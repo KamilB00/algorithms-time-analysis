@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="algorithms_time_analysis"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="algorithms_time_analysis">
+				<Option output="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/algorithms_time_analysis" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 algorithms_time_analysis"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="algorithms_time_analysis/fast">
+				<Option output="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/algorithms_time_analysis" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 algorithms_time_analysis/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Algorithms/BellmanFord.cpp">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Algorithms/BellmanFord.h">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Algorithms/Djikstra.cpp">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Algorithms/Djikstra.h">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Algorithms/Kruskal.cpp">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Algorithms/Kruskal.h">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Algorithms/Prime.cpp">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Algorithms/Prime.h">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Data Structures/ArrayList/ArrayList.cpp">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Data Structures/ArrayList/ArrayList.h">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Data Structures/LinkedList/Element.cpp">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Data Structures/LinkedList/Element.h">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Data Structures/LinkedList/List.cpp">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Data Structures/LinkedList/List.h">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Data Structures/mystl.h">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/File Loader/File.cpp">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/File Loader/File.h">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Graph Generator/Generator.cpp">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Graph Generator/Generator.h">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Graph Representation/Representation.cpp">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Graph Representation/Representation.h">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Graph/Edge.cpp">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Graph/Edge.h">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Graph/Graph.cpp">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Graph/Graph.h">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Graph/Vertex.cpp">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Graph/Vertex.h">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Menu /Menu.cpp">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Menu /Menu.h">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Timer/Timer.cpp">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/Timer/Timer.h">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/main.cpp">
+			<Option target="algorithms_time_analysis"/>
+		</Unit>
+		<Unit filename="/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
