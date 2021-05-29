@@ -12,12 +12,12 @@ ArrayList<T>::ArrayList() {
     array = nullptr;
 }
 
-template <class T>
-ArrayList<T>::~ArrayList() {
-    delete [] array;
-    array = nullptr;
-    size = 0;
-}
+//template <class T>
+//ArrayList<T>::~ArrayList() {
+//    delete [] array;
+//    array = nullptr;
+//    size = 0;
+//}
 
 template <class T>
 void ArrayList<T>::addFirst(T data) {
@@ -163,10 +163,14 @@ T ArrayList<T>::get(int index){
 }
 
 template <class T>
+int ArrayList<T>::get_size(){
+    return size;
+}
+
+template <class T>
 void ArrayList<T>::show() {
     for (int i = 0; i < size; i++)
         cout << array[i] << " ";
-    cout << endl;
 }
 
 template <class T>
