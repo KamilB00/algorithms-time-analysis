@@ -77,6 +77,7 @@ using namespace std;
                                 //TODO wczytaj graf z pliku
                                 Graph *graph = Graph::getInstance();
                                 graph->fill_the_graph();
+                                graph->create_incidence_matrix();
                                 break;
                             }
                             case 2: {
@@ -90,12 +91,12 @@ using namespace std;
                             case 4: {
                                 //TODO wyświetl graf w postaci macierzy incydencji
                                 Graph *graph = Graph::getInstance();
-                                graph->create_incidence_matrix();
+                                graph->show_graph_as_incidence_matrix();
                                 break;
                             }
                             case 5: {
                                 //PRIME'S ALGORITHM
-                                int representation = representation = algorithm_representation_screen();
+                                int representation = algorithm_representation_screen();
                                 do {
                                     switch (representation) {
                                         case 1: {
@@ -115,7 +116,7 @@ using namespace std;
                             }
                             case 6: {
                                 //KRUSKAL'S ALGORITHM
-                                int representation = representation = algorithm_representation_screen();
+                                int representation = algorithm_representation_screen();
                                 do {
                                     switch (representation) {
                                         case 1: {
@@ -134,7 +135,7 @@ using namespace std;
                             }
                             case 7: {
                                 //DJIKSTRA ALGORITHM
-                                int representation = representation = algorithm_representation_screen();
+                                int representation = algorithm_representation_screen();
                                 do {
                                     switch (representation) {
                                         case 1: {
@@ -153,7 +154,7 @@ using namespace std;
                             }
                             case 8: {
                                 //BELLMAN-FORD ALGORITHM
-                                int representation = representation = algorithm_representation_screen();
+                                int representation = algorithm_representation_screen();
                                 do {
                                     switch (representation) {
                                         case 1: {
