@@ -15,11 +15,13 @@ public:
 
     ArrayList<T>(T *tmp, int size);
 
-    virtual ~ArrayList();
+    //virtual ~ArrayList();
 
     void addFirst(T data);
 
     void addLast(T data);
+
+    int get_size();
 
     void add(T data, int index);
 

@@ -3,6 +3,7 @@
 //
 
 #include "../../algorithms-time-analysis/Data Structures/LinkedList/List.cpp"
+#include "../../algorithms-time-analysis/Data Structures/ArrayList/ArrayList.cpp"
 #include "Edge.cpp"
 #include<fstream>
 
@@ -11,16 +12,16 @@ using namespace std;
 class Graph {
 
 private:
-    List<Vertex> *vertex_list;
-    List<Edge> *edge_list;
+    List<Vertex> *vertex_list = nullptr;
+    List<Edge> *edge_list = nullptr;
     bool is_directed;
     int **incidence_matrix = nullptr;
-
+    ArrayList<List<ArrayList<int>>> *adjacency_list = nullptr;
 
     inline Graph() {
         this->vertex_list = new List<Vertex>();
         this->edge_list = new List<Edge>();
-        this->is_directed = true;
+        this->is_directed = false;
     }
 
     inline static Graph *instance;
@@ -117,7 +118,56 @@ public:
         incidence_matrix = matrix;
     }
 
-    void show_graph_as_incidence_matrix() {
+    inline void create_adjacency_list(){
+        int number_of_vertexes = vertex_list->get_size();
+        int number_of_edges = edge_list->get_size();
+        auto *adj_list = new ArrayList<List<ArrayList<int>>>();
+
+        for(int i=0; i<number_of_vertexes; i++){
+            auto *list = new List<ArrayList<int>>();
+            for(int j=0; j<number_of_edges;j++){
+                if(is_directed){
+                    if(edge_list->get(j).get_start_vertex().get_id() == i) {
+                        auto *array_list = new ArrayList<int>();
+                        array_list->addLast(edge_list->get(j).get_end_vertex().get_id());
+                        array_list->addLast(edge_list->get(j).get_weight());
+                        list->addLast(*array_list);
+                    }
+                }
+                else if(!is_directed){
+                    if(edge_list->get(j).get_start_vertex().get_id() == i){
+                        auto *array_list = new ArrayList<int>();
+                        array_list->addLast(edge_list->get(j).get_end_vertex().get_id());
+                        array_list->addLast(edge_list->get(j).get_weight());
+
+                        list->addLast(*array_list);
+                    }
+                    if(edge_list->get(j).get_end_vertex().get_id() == i){
+                        auto *array_list = new ArrayList<int>();
+                        array_list->addLast(edge_list->get(j).get_start_vertex().get_id());
+                        array_list->addLast(edge_list->get(j).get_weight());
+                        list->addLast(*array_list);
+                    }
+                }
+            }
+            adj_list->addLast(*list);
+        }
+        adjacency_list = adj_list;
+    }
+
+   inline void show_adjacency_list(){
+
+        for(int i=0;i<adjacency_list->get_size();i++){
+            cout<<"["<<i<<"]: ";
+            for(int j=0; j<adjacency_list->get(i).get_size();j++){
+                adjacency_list->get(i).get(j).show();
+               cout<<"  ";
+            }
+            cout<<endl;
+        }
+    }
+
+   inline void show_incidence_matrix() {
         for (int i = 0; i < edge_list->get_size(); i++) {
             for (int j = 0; j < vertex_list->get_size(); j++) {
                 cout << incidence_matrix[i][j] << " ";
