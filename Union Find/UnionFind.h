@@ -1,0 +1,14 @@
+//
+// Created by Kamil Bonkowski on 29/05/2021.
+//
+
+#ifndef ALGORITHMS_TIME_ANALYSIS_UNIONFIND_H
+#define ALGORITHMS_TIME_ANALYSIS_UNIONFIND_H
+
+
+class UnionFind {
+
+};
+
+
+#endif //ALGORITHMS_TIME_ANALYSIS_UNIONFIND_H

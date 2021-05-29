@@ -188,7 +188,6 @@ inline void Menu::main_screen() {
                 //TODO:Experimental mode
                 cout << "THIS IS Experimental MODE" << endl;
 
-
                 break;
             }
         }
