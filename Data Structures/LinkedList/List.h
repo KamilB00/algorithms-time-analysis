@@ -1,12 +1,6 @@
 //
 // Created by Kamil Bonkowski on 25/05/2021.
 //
-
-#ifndef ALGORITHMS_TIME_ANALYSIS_LIST_H
-#define ALGORITHMS_TIME_ANALYSIS_LIST_H
-
-
-#include "Element.h"
 #include "Element.cpp"
 
 template <class T>
@@ -46,6 +40,3 @@ public:
     int get_size();
 };
 
-
-
-#endif //ALGORITHMS_TIME_ANALYSIS_LIST_H

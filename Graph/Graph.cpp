@@ -2,22 +2,105 @@
 // Created by Kamil Bonkowski on 25/05/2021.
 //
 
-#include "Graph.h"
-#include "../../algorithms-time-analysis/Data Structures/mystl.h"
+#include "../../algorithms-time-analysis/Data Structures/LinkedList/List.cpp"
+#include "Edge.cpp"
+#include<fstream>
+
+using namespace std;
+
+class Graph {
+
+private:
+    List<Vertex> *vertex_list;
+    List<Edge> *edge_list;
+    bool is_directed;
+
+   inline Graph() {
+        this->vertex_list = new List<Vertex>();
+        this->edge_list = new List<Edge>();
+        this->is_directed = false;
+    }
+   inline static Graph *instance;
 
 
-Graph::Graph(bool is_directed) {
-    this->vertex_list = new List<Vertex>();
-    this->edge_list = new List<Edge>();
-    this->is_directed = is_directed;
-}
-List<Edge> Graph::get_edge_list() {
-    return *edge_list;
-}
-List<Vertex> Graph::get_vertex_list() {
-    return *vertex_list;
-}
+public:
+   inline void set_is_directed(bool isDirected) {
+        this->is_directed = isDirected;
+    }
 
-bool Graph::get_is_directed() const {
-    return is_directed;
-}
+   inline List<Edge> get_edge_list() {
+        return *edge_list;
+    }
+
+   inline List<Vertex> get_vertex_list() {
+        return *vertex_list;
+    }
+
+   inline bool get_is_directed() const {
+        return is_directed;
+    }
+
+   inline static Graph *getInstance() {
+        if (!instance)
+            instance = new Graph;
+        return instance;
+    }
+
+   inline void fill_the_graph() {
+
+        fstream in;
+        in.open("/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/graf.txt", ios::in);
+        if (!in.good()) in.open("/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/graf.txt", ios::in);
+
+        if (in.good()) {
+            int number_of_edges, number_of_vertexes;
+            in >> number_of_edges >> number_of_vertexes;
+
+            for (int i = 0; i < number_of_vertexes; i++) {
+                auto *vertex = new Vertex(i);
+                vertex_list->addLast(*vertex);
+            }
+
+            int vertex_start, vertex_end, weight;
+
+            for (int i = 0; i < number_of_edges; i++) {
+                in >> vertex_start >> vertex_end >> weight;
+                auto *edge = new Edge(vertex_list->get(vertex_start),vertex_list->get(vertex_end),weight);
+                edge_list->addLast(*edge);
+            }
+
+            in.close();
+        }
+        else{
+            cout<<"File can not be find "<<endl;
+        }
+    }
+    inline void show_the_graph(){
+
+       for(int i=0; i<edge_list->get_size(); i++){
+           cout<<"start vertex: "<<edge_list->get(i).get_start_vertex().get_id();
+           cout<<" end vertex: "<<edge_list->get(i).get_end_vertex().get_id();
+           cout<<" weight: "<<edge_list->get(i).get_weight()<<endl;
+       }
+   }
+
+    inline int **create_incidence_matrix(){
+        int number_of_vertexes = vertex_list->get_size();
+        int number_of_edges = edge_list->get_size();
+
+        int **incidence_matrix = new int *[number_of_edges];
+        for(int i =0;i<number_of_edges;i++){
+            incidence_matrix[i] = new int[number_of_vertexes];
+            for(int j=0;j<number_of_vertexes;j++){
+                incidence_matrix[i][j] = (i+j);
+            }
+        }
+
+       return incidence_matrix;
+    }
+
+    void show_graph_as_incidence_matrix(){
+
+   }
+
+};

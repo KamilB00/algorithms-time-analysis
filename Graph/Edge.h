@@ -2,12 +2,7 @@
 // Created by Kamil Bonkowski on 25/05/2021.
 //
 
-#ifndef ALGORITHMS_TIME_ANALYSIS_EDGE_H
-#define ALGORITHMS_TIME_ANALYSIS_EDGE_H
-#include "Vertex.h"
-
-
-
+#include "Vertex.cpp"
 class Edge {
 private:
     Vertex start_vertex;
@@ -25,4 +20,3 @@ public:
 };
 
 
-#endif //ALGORITHMS_TIME_ANALYSIS_EDGE_H
