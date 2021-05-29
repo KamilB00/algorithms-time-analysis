@@ -1,8 +1,6 @@
-#include <iostream>
-#include "./Menu /Menu.h"
-
+#include"../algorithms-time-analysis/Menu /Menu.cpp"
 int main() {
-    Menu *menu = new Menu();
-    menu->main_screen();
+  Menu *menu = new Menu();
+  menu->main_screen();
     return 0;
 }
