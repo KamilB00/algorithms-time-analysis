@@ -91,6 +91,9 @@ inline void Menu::main_screen() {
                         }
                         case 2: {
                             //TODO wygeneruj losowy graf
+                            Graph *graph = Graph::getInstance();
+                            graph->generate_new_graph(false);
+
                             break;
                         }
                         case 3: {

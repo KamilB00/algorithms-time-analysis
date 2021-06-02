@@ -6,6 +6,7 @@
 #include "../../algorithms-time-analysis/Data Structures/ArrayList/ArrayList.cpp"
 #include "Edge.cpp"
 #include<fstream>
+#include<cmath>
 
 using namespace std;
 
@@ -201,6 +202,66 @@ public:
         }
         vertex_list->removeAll();
         edge_list->removeAll();
+    }
+
+    inline int calculate_edges(int density, int number_of_vertexes, bool directed){ // returns number of edges needed in the graph
+        int difference = 0;
+        int max_edges_number = 0;
+        int possible_density = 0;
+
+        max_edges_number = (int)(number_of_vertexes*(number_of_vertexes-1))/2;
+
+        int approx_edges = (int)(((float)density/100.0)*(float)max_edges_number);
+        int approx_density = (int)(approx_edges*100/max_edges_number);
+
+        int number_of_edges = 0;
+        int min_difference = 100;
+
+        for(int i = approx_edges-1; i<max_edges_number; i++){
+            possible_density = (int)(i*100)/max_edges_number;
+            difference = abs(density-possible_density);
+            if(difference < min_difference){
+                min_difference = difference;
+                number_of_edges = i;
+            }
+        }
+        if(directed){
+           number_of_edges = 2*number_of_edges;
+        }
+
+        cout<<"Nearest available density: "<<(int)(number_of_edges*100/max_edges_number)<<endl;
+        return number_of_edges;
+    }
+
+    inline void generate_new_graph(bool directed){
+        int number_of_vertexes = 0;
+        int density = 0;
+        int number_of_edges = 0;
+
+
+        cout<<"Number of vertexes :";
+        cin>>number_of_vertexes;
+
+        int minimum_number_of_edges = number_of_vertexes - 1; // to make graph connected
+
+
+        do {
+            cout << "Density: ";
+            cin >> density;
+        }while(density < minimum_number_of_edges/(number_of_vertexes*(number_of_vertexes-1))/2);
+
+
+        number_of_edges = calculate_edges(density,number_of_vertexes, directed);
+        cout<<"Number of edges: "<<number_of_edges<<endl;
+
+       //adding vertexes to Vertex List
+//       for(int i=0;i<number_of_vertexes;i++){
+//           auto *vertex = new Vertex(i);
+//           get_vertex_list().addLast(*vertex);
+//       }
+
+
+
     }
 
 
