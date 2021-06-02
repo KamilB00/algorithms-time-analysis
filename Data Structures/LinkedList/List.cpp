@@ -187,9 +187,6 @@ int List<T>::get_size(){
     return size;
 }
 
-//template <class T>
-//List<T>::~List<T>(){
-//    removeAll();
-//}
+
 
 

@@ -12,12 +12,6 @@ ArrayList<T>::ArrayList() {
     array = nullptr;
 }
 
-//template <class T>
-//ArrayList<T>::~ArrayList() {
-//    delete [] array;
-//    array = nullptr;
-//    size = 0;
-//}
 
 template <class T>
 void ArrayList<T>::addFirst(T data) {

@@ -18,7 +18,6 @@ private:
 
 public:
     List();
-    //~List();
     bool contains(T data);
 
     void add(T data, int index);

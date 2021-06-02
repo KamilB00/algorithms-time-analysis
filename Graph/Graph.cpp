@@ -21,7 +21,7 @@ private:
     inline Graph() {
         this->vertex_list = new List<Vertex>();
         this->edge_list = new List<Edge>();
-        this->is_directed = false;
+        this->is_directed = true;
     }
 
     inline static Graph *instance;
@@ -176,6 +176,32 @@ public:
         }
     }
 
+    inline void delete_adjacency_list(){
+        for(int i=0;i<adjacency_list->get_size(); i++){
+           for(int j=0; j<adjacency_list->get(i).get_size(); j++){
+               adjacency_list->get(i).get(j).removeAll();
+           }
+            adjacency_list->get(i).removeAll();
+        }
+        adjacency_list = nullptr;
+    }
+
+    inline void delete_incidence_matrix(){
+        for(int i =0; i<edge_list->get_size(); i++){
+            delete [] incidence_matrix[i];
+        }
+        delete [] incidence_matrix;
+        incidence_matrix = nullptr;
+    }
+
+    inline void delete_graph(){
+        if(edge_list->get_size()>0){
+            delete_incidence_matrix();
+            delete_adjacency_list();
+        }
+        vertex_list->removeAll();
+        edge_list->removeAll();
+    }
 
 
 };

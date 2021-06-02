@@ -48,10 +48,11 @@ inline int Menu::welcome_screen() {
     cout << "6. Kruskal's algorithm" << endl;
     cout << "7. Djiksra" << endl;
     cout << "8. Bellman-Ford" << endl;
+    cout << "9. Delete graph" << endl;
     cout << endl;
     cout << "Press 0 to return           " << endl;
     cout << "----------------------------------------------- " << endl;
-    return select_option(8);
+    return select_option(9);
 }
 
 inline Menu::Menu() = default;
@@ -82,8 +83,10 @@ inline void Menu::main_screen() {
                             } else {
                                 graph->fill_the_graph();
                             }
-                            graph->create_incidence_matrix();
-                            graph->create_adjacency_list();
+
+                                graph->create_incidence_matrix();
+                                graph->create_adjacency_list();
+
                             break;
                         }
                         case 2: {
@@ -93,13 +96,21 @@ inline void Menu::main_screen() {
                         case 3: {
                             //TODO wyświetl graf w postaci listy sąsiedztwa
                             Graph *graph = Graph::getInstance();
-                            graph->show_adjacency_list();
+                            if(graph->get_edge_list().get_size()>0) {
+                                graph->show_adjacency_list();
+                            }else{
+                                cout<<"No graph loaded !"<<endl;
+                            }
                             break;
                         }
                         case 4: {
                             //TODO wyświetl graf w postaci macierzy incydencji
                             Graph *graph = Graph::getInstance();
-                            graph->show_incidence_matrix();
+                            if(graph->get_edge_list().get_size()>0) {
+                                graph->show_incidence_matrix();
+                            }else{
+                                cout<<"No graph loaded !"<<endl;
+                            }
                             break;
                         }
                         case 5: {
@@ -179,6 +190,17 @@ inline void Menu::main_screen() {
                             } while (representation = algorithm_representation_screen());
                             break;
                         }
+                        case 9:{
+                            //Delete Graph
+                            Graph *graph = Graph::getInstance();
+
+                            if(graph->get_edge_list().get_size() > 0) {
+                                graph->delete_graph();
+                            }
+
+                        }
+
+
                     }
                 } while (welcome_choice = welcome_screen());
                 break;
