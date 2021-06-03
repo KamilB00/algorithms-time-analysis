@@ -8,6 +8,9 @@ template<class T>
 Element<T>::Element(T& data) : next(nullptr),data(data), previous(nullptr){}
 
 template<class T>
+Element<T>::~Element<T>() = default;
+
+template<class T>
 Element<T> *Element<T>::getNext() const {
     return next;
 }

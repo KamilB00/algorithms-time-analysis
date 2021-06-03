@@ -4,11 +4,15 @@
 
 class Vertex {
 private:
-   int id{};
+    int id{};
 
 public:
- Vertex();
- explicit Vertex(int id);
+    Vertex();
+
+    explicit Vertex(int id);
 
     int get_id() const;
+
+
 };
+

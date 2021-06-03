@@ -12,7 +12,6 @@ ArrayList<T>::ArrayList() {
     array = nullptr;
 }
 
-
 template <class T>
 void ArrayList<T>::addFirst(T data) {
     size++;
@@ -98,8 +97,9 @@ void ArrayList<T>::removeFirst() {
     else {
         size--;
         T *tmp = new T[size];
-        for (int i = 1; i < size + 1; i++)
+        for (int i = 1; i < size + 1; i++) {
             tmp[i - 1] = array[i];
+        }
         delete[]array;
         array = tmp;
     }
