@@ -92,7 +92,9 @@ inline void Menu::main_screen() {
                         case 2: {
                             //TODO wygeneruj losowy graf
                             Graph *graph = Graph::getInstance();
-                            graph->generate_new_graph(false);
+                            graph->generate_new_graph(graph->get_is_directed());
+                            graph->create_incidence_matrix();
+                            graph->create_adjacency_list();
 
                             break;
                         }
@@ -200,10 +202,7 @@ inline void Menu::main_screen() {
                             if(graph->get_edge_list().get_size() > 0) {
                                 graph->delete_graph();
                             }
-
                         }
-
-
                     }
                 } while (welcome_choice = welcome_screen());
                 break;

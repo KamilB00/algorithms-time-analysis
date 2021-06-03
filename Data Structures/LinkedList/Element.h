@@ -11,6 +11,7 @@ private:
     Element<T> *previous;
 public:
     explicit Element<T>(T& data);
+    ~Element();
 
     Element<T> *getNext() const;
 

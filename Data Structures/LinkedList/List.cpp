@@ -13,6 +13,7 @@ List<T>::List() {
     first = last = nullptr;
 }
 
+
 template <class T>
 Element<T> *List<T>::getPosition(int position) const {
     if (position < 0 || position > size)
@@ -54,7 +55,6 @@ void List<T>::add(T data, int index) {
         element->setPrevious(before);
         tmp->setPrevious(element);
         element->setNext(tmp);
-
         size++;
     }
 }
@@ -83,14 +83,14 @@ void List<T>::addLast(T data) {
 
 }
 template <class T>
-void List<T>::setFirst(Element<T> *first) {
-    List::first = first;
+void List<T>::setFirst(Element<T> *first1) {
+    first = first1;
     first->setPrevious(nullptr);
 }
 
 template <class T>
-void List<T>::setLast(Element<T> *last) {
-    List::last = last;
+void List<T>::setLast(Element<T> *last1) {
+    last = last1;
     last->setNext(nullptr);
 }
 

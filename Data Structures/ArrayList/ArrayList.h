@@ -15,7 +15,6 @@ public:
 
     ArrayList<T>(T *tmp, int size);
 
-    //virtual ~ArrayList();
 
     void addFirst(T data);
 
