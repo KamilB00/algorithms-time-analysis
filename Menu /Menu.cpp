@@ -4,9 +4,8 @@
 
 
 #include <iostream>
-#include "../../algorithms-time-analysis/Graph/Graph.cpp"
 #include "Menu.h"
-
+#include "../../algorithms-time-analysis/Algorithms/Djikstra.cpp"
 
 using namespace std;
 
@@ -14,6 +13,14 @@ inline int Menu::algorithm_representation_screen() {
     cout << "--- Solve problem using: ---" << endl;
     cout << "1. adjacency list" << endl;
     cout << "2. incidence matrix" << endl;
+    cout << endl;
+    cout << "Press 0 to return" << endl;
+    return select_option(2);
+}
+
+inline int Menu::choose_graph_property_screen(){
+    cout<<"1. directed"<<endl;
+    cout<<"2. undirected"<<endl;
     cout << endl;
     cout << "Press 0 to return" << endl;
     return select_option(2);
@@ -83,7 +90,6 @@ inline void Menu::main_screen() {
                             } else {
                                 graph->fill_the_graph();
                             }
-
                                 graph->create_incidence_matrix();
                                 graph->create_adjacency_list();
 
@@ -91,10 +97,38 @@ inline void Menu::main_screen() {
                         }
                         case 2: {
                             //TODO wygeneruj losowy graf
+
                             Graph *graph = Graph::getInstance();
-                            graph->generate_new_graph(graph->get_is_directed());
-                            graph->create_incidence_matrix();
-                            graph->create_adjacency_list();
+
+                            if(graph->get_edge_list().get_size() == 0) {
+                                int representation = choose_graph_property_screen();
+
+                                    switch (representation) {
+                                        case 0: {
+                                            welcome_screen();
+                                            break;
+                                        }
+                                        case 1: {
+                                            // Directed Graph
+                                            graph->set_is_directed(true);
+                                            graph->generate_new_graph(graph->get_is_directed());
+                                            graph->create_incidence_matrix();
+                                            graph->create_adjacency_list();
+                                            break;
+                                        }
+
+                                        case 2: {
+                                            // Undirected Graph
+                                            graph->set_is_directed(false);
+                                            graph->generate_new_graph(graph->get_is_directed());
+                                            graph->create_incidence_matrix();
+                                            graph->create_adjacency_list();
+                                            break;
+                                        }
+                                    }
+                            }else{
+                                cout<<"Delete graph to generate another !"<<endl;
+                            }
 
                             break;
                         }
@@ -160,11 +194,23 @@ inline void Menu::main_screen() {
                         case 7: {
                             //DJIKSTRA ALGORITHM
                             int representation = algorithm_representation_screen();
-                            do {
                                 switch (representation) {
                                     case 1: {
                                         //TODO: Djikstra as a list
-                                        cout << "Djikstra as a list" << endl;
+                                        auto *graph = Graph::getInstance();
+                                        auto *djikstra = new Djikstra();
+                                        int start_vertex;
+                                        int end_vertex;
+
+                                        int number_of_vertexes = graph->get_vertex_list().get_size();
+                                        cout<<"start vertex: ";
+                                        cin>>start_vertex;
+
+                                        cout<<"end vertex: ";
+                                        cin>>end_vertex;
+                                        if((start_vertex >= 0 && start_vertex < number_of_vertexes) && (end_vertex >= 0 && end_vertex < number_of_vertexes)){
+                                            djikstra->djikstra_adjacency_list(start_vertex,end_vertex);
+                                        }
                                         break;
                                     }
                                     case 2: {
@@ -173,7 +219,6 @@ inline void Menu::main_screen() {
                                         break;
                                     }
                                 }
-                            } while (representation = algorithm_representation_screen());
                             break;
                         }
                         case 8: {

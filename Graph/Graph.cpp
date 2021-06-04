@@ -30,6 +30,14 @@ private:
 
 
 public:
+    inline ArrayList<List<ArrayList<int>>> get_adjacency_list(){
+        return *adjacency_list;
+    }
+
+    inline int get_incidence_matrix(){
+        return **incidence_matrix;
+    }
+
     inline void set_is_directed(bool isDirected) {
         this->is_directed = isDirected;
     }
