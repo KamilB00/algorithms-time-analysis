@@ -128,6 +128,8 @@ public:
         incidence_matrix = matrix;
     }
 
+
+
     inline void create_adjacency_list() {
         int number_of_vertexes = vertex_list->get_size();
         int number_of_edges = edge_list->get_size();
@@ -162,6 +164,10 @@ public:
             adj_list->addLast(*list);
         }
         adjacency_list = adj_list;
+    }
+
+    inline int get_matrix_value (int i, int j){
+        return incidence_matrix[i][j];
     }
 
     inline void show_adjacency_list() {

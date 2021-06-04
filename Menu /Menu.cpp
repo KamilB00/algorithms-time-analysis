@@ -216,6 +216,20 @@ inline void Menu::main_screen() {
                                     case 2: {
                                         //TODO: Djikstra as a matrix
                                         cout << "Djikstra as a matrix" << endl;
+                                        auto *graph = Graph::getInstance();
+                                        auto *djikstra = new Djikstra();
+                                        int start_vertex;
+                                        int end_vertex;
+
+                                        int number_of_vertexes = graph->get_vertex_list().get_size();
+                                        cout<<"start vertex: ";
+                                        cin>>start_vertex;
+
+                                        cout<<"end vertex: ";
+                                        cin>>end_vertex;
+                                        if((start_vertex >= 0 && start_vertex < number_of_vertexes) && (end_vertex >= 0 && end_vertex < number_of_vertexes)){
+                                            djikstra->djikstra_incidence_matrix(start_vertex,end_vertex);
+                                        }
                                         break;
                                     }
                                 }

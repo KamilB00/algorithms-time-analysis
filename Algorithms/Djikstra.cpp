@@ -5,6 +5,7 @@
 #include<iostream>
 #include<climits>
 #include"../../algorithms-time-analysis/Graph/Graph.cpp"
+#include <cmath>
 
 using namespace std;
 
@@ -44,8 +45,76 @@ class Djikstra {
         return min_vertex;
     }
 
+    int min_next_vertex_IM(int src_node) {
+        Graph *graph = Graph::getInstance();
+        int min_vertex = INT_MAX;
+        int min_length = INT_MAX;
+        int number_of_edges = graph->get_edge_list().get_size();
+        int number_of_vertexes = graph->get_vertex_list().get_size();
+
+        int value = 0;
+        for (int i = 0; i < number_of_edges; i++) {
+            for (int j = 0; j < number_of_vertexes; j++) {
+                value = graph->get_matrix_value(i, j);
+                if (graph->get_matrix_value(i, src_node) > 0 && value < 0) {
+                    int current_length = abs(value);
+                    int current_vertex = j;
+
+                    if (!visited[current_vertex]) {
+                        visited[current_vertex] = true;
+
+                        if (length[src_node] + current_length < length[current_vertex]) {
+                            previous[current_vertex] = src_node;
+                            length[current_vertex] = length[src_node] + current_length;
+                        }
+                    }
+
+                    if (current_length < min_length) {
+                        min_length = current_length;
+                        min_vertex = current_vertex;
+                    }
+
+
+                }
+            }
+        }
+        return min_vertex;
+
+    }
+
 public:
     Djikstra() {
+
+    }
+
+    void djikstra_incidence_matrix(int start_node, int end_node) {
+        Graph *graph = Graph::getInstance();
+
+        int incidence_matrix = graph->get_incidence_matrix();
+
+        int number_of_edges = graph->get_edge_list().get_size();
+        int number_of_vertexes = graph->get_vertex_list().get_size();
+
+        length = new int[number_of_vertexes];
+        previous = new int[number_of_vertexes];
+        visited = new bool[number_of_vertexes];
+
+        for (int i = 0; i < number_of_vertexes; i++) {
+            length[i] = INT_MAX;
+            visited[i] = false;
+            previous[i] = -1;
+        }
+
+        length[start_node] = 0;
+        int min_vertex = start_node;
+        visited[start_node] = true;
+
+        for (int i = 0; i < number_of_vertexes; i++) {
+            min_vertex = min_next_vertex_IM(min_vertex);
+        }
+
+        show_path(start_node, end_node);
+
 
     }
 
@@ -75,7 +144,7 @@ public:
             min_vertex = min_next_vertex_AL(min_vertex);
         }
 
-        show_path(start_node,end_node);
+        show_path(start_node, end_node);
     }
 
     void show_path(int start_node, int end_node) {
@@ -91,9 +160,9 @@ public:
         } else {
             cout << "This connection does not exist !" << endl;
         }
-        delete [] visited;
-        delete [] length;
-        delete [] previous;
+        delete[] visited;
+        delete[] length;
+        delete[] previous;
     }
 
     int show_previous(int node) {
