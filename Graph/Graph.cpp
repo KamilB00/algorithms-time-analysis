@@ -23,13 +23,21 @@ private:
     inline Graph() {
         this->vertex_list = new List<Vertex>();
         this->edge_list = new List<Edge>();
-        this->is_directed = true;
+        this->is_directed = false;
     }
 
     inline static Graph *instance;
 
 
 public:
+    inline ArrayList<List<ArrayList<int>>> get_adjacency_list(){
+        return *adjacency_list;
+    }
+
+    inline int get_incidence_matrix(){
+        return **incidence_matrix;
+    }
+
     inline void set_is_directed(bool isDirected) {
         this->is_directed = isDirected;
     }
@@ -120,6 +128,8 @@ public:
         incidence_matrix = matrix;
     }
 
+
+
     inline void create_adjacency_list() {
         int number_of_vertexes = vertex_list->get_size();
         int number_of_edges = edge_list->get_size();
@@ -154,6 +164,10 @@ public:
             adj_list->addLast(*list);
         }
         adjacency_list = adj_list;
+    }
+
+    inline int get_matrix_value (int i, int j){
+        return incidence_matrix[i][j];
     }
 
     inline void show_adjacency_list() {
