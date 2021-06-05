@@ -30,11 +30,11 @@ private:
 
 
 public:
-    inline ArrayList<List<ArrayList<int>>> get_adjacency_list(){
+    inline ArrayList<List<ArrayList<int>>> get_adjacency_list() {
         return *adjacency_list;
     }
 
-    inline int get_incidence_matrix(){
+    inline int get_incidence_matrix() {
         return **incidence_matrix;
     }
 
@@ -129,7 +129,6 @@ public:
     }
 
 
-
     inline void create_adjacency_list() {
         int number_of_vertexes = vertex_list->get_size();
         int number_of_edges = edge_list->get_size();
@@ -166,7 +165,7 @@ public:
         adjacency_list = adj_list;
     }
 
-    inline int get_matrix_value (int i, int j){
+    inline int get_matrix_value(int i, int j) {
         return incidence_matrix[i][j];
     }
 
@@ -331,12 +330,12 @@ public:
             do {
                 cout << "[directed] Density: ";
                 cin >> density;
-            } while (density < ((100 * minimum_number_of_edges) / (2 * max_edges_undirected)) || density > 100 );
+            } while (density < ((100 * minimum_number_of_edges) / (2 * max_edges_undirected)) || density > 100);
         } else {
             do {
                 cout << "[undirected] Density: ";
                 cin >> density;
-            } while (density < 100 * minimum_number_of_edges / max_edges_undirected || density > 100 );
+            } while (density < 100 * minimum_number_of_edges / max_edges_undirected || density > 100);
         }
         number_of_edges = calculate_edges(density, number_of_vertexes, directed);
 

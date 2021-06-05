@@ -82,7 +82,7 @@ inline void Menu::main_screen() {
                             break;
                         }
                         case 1: {
-                            //TODO wczytaj graf z pliku
+                            //wczytaj graf z pliku
 
                             Graph *graph = Graph::getInstance();
                             if (graph->get_edge_list().get_size() > 0) {
@@ -96,7 +96,7 @@ inline void Menu::main_screen() {
                             break;
                         }
                         case 2: {
-                            //TODO wygeneruj losowy graf
+                            //wygeneruj losowy graf
 
                             Graph *graph = Graph::getInstance();
 
@@ -133,7 +133,7 @@ inline void Menu::main_screen() {
                             break;
                         }
                         case 3: {
-                            //TODO wyświetl graf w postaci listy sąsiedztwa
+                            //wyświetl graf w postaci listy sąsiedztwa
                             Graph *graph = Graph::getInstance();
                             if(graph->get_edge_list().get_size()>0) {
                                 graph->show_adjacency_list();
@@ -143,7 +143,7 @@ inline void Menu::main_screen() {
                             break;
                         }
                         case 4: {
-                            //TODO wyświetl graf w postaci macierzy incydencji
+                            //wyświetl graf w postaci macierzy incydencji
                             Graph *graph = Graph::getInstance();
                             if(graph->get_edge_list().get_size()>0) {
                                 graph->show_incidence_matrix();
@@ -159,12 +159,16 @@ inline void Menu::main_screen() {
                                 switch (representation) {
                                     case 1: {
                                         //TODO: Prime as a list
-                                        cout << "Prime as a list" << endl;
+                                       auto *prime = new Prime();
+
+                                        prime->primAL(0);
                                         break;
                                     }
                                     case 2: {
                                         //TODO: Prime as a matrix
-                                        cout << "Prime as a matrix" << endl;
+                                        auto *prime = new Prime();
+                                        prime->primIM(0);
+
                                         break;
                                     }
                                 }

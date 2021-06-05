@@ -4,7 +4,6 @@
 
 #include<iostream>
 #include<climits>
-#include"../../algorithms-time-analysis/Graph/Graph.cpp"
 #include <cmath>
 #include"Prime.cpp"
 
@@ -158,9 +157,11 @@ public:
             cout << start_node << " ";
             cout << endl;
             cout << "Cost :" << length[end_node] << endl;
+            show_arrays();
         } else {
             cout << "This connection does not exist !" << endl;
         }
+
         delete[] visited;
         delete[] length;
         delete[] previous;
@@ -171,7 +172,9 @@ public:
         return previous[node];
     }
 
-    void show_arrays(int number_of_vertexes) {
+    void show_arrays() {
+        Graph *graph = Graph::getInstance();
+        int number_of_vertexes = graph->get_vertex_list().get_size();
         cout << "previous :";
         for (int i = 0; i < number_of_vertexes; i++) {
             cout << Djikstra::previous[i] << " ";
