@@ -12,7 +12,5 @@ public:
     explicit Vertex(int id);
 
     int get_id() const;
-
-
 };
 

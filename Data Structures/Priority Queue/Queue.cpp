@@ -1,16 +1,19 @@
-#include "PriorityQueue.h"
+#include "Queue.h"
 
-PriorityQueue::PriorityQueue(int edges){
+inline Queue::Queue(int edges){
     heap = new Edge_Element [edges];
     heapPosition = 0;
 }
 
-PriorityQueue::~PriorityQueue(){
+inline Queue::~Queue(){
     delete [] heap;
 }
 
+inline Edge_Element Queue::front(){
+    return heap[0];
+}
 
-void PriorityQueue::push(Edge_Element edge) {
+inline void Queue::push(Edge_Element edge) {
     int i, j;
     i = heapPosition++;
     j = (i-1) >> 1;
@@ -24,7 +27,8 @@ void PriorityQueue::push(Edge_Element edge) {
 
     heap[i] = edge;
 }
-void PriorityQueue::pop(){
+
+inline void Queue::pop(){
     int i, j;
     Edge_Element edge;
 
@@ -44,8 +48,4 @@ void PriorityQueue::pop(){
         }
         heap[i] = edge;
     }
-}
-
-PriorityQueue::Edge_Element PriorityQueue::front() {
-    return heap[0];
 }
