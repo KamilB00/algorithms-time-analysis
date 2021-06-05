@@ -23,7 +23,7 @@ private:
     inline Graph() {
         this->vertex_list = new List<Vertex>();
         this->edge_list = new List<Edge>();
-        this->is_directed = true;
+        this->is_directed = false;
     }
 
     inline static Graph *instance;

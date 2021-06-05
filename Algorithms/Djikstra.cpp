@@ -6,6 +6,7 @@
 #include<climits>
 #include"../../algorithms-time-analysis/Graph/Graph.cpp"
 #include <cmath>
+#include"Prime.cpp"
 
 using namespace std;
 
