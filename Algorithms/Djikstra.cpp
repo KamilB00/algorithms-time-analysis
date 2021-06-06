@@ -15,9 +15,12 @@ class Djikstra {
     int *length;
     int *previous;
     bool *visited;
+    Graph *graph = Graph::getInstance();
+    int number_of_edges = graph->get_edge_list().get_size();
+    int number_of_vertexes = graph->get_vertex_list().get_size();
 
     int min_next_vertex_AL(int src_node) {
-        Graph *graph = Graph::getInstance();
+
         int min_vertex = INT_MAX;
         int min_length = INT_MAX;
         int number_of_neighbours = graph->get_adjacency_list().get(src_node).get_size();
@@ -41,16 +44,12 @@ class Djikstra {
                 min_vertex = current_vertex;
             }
         }
-
         return min_vertex;
     }
 
     int min_next_vertex_IM(int src_node) {
-        Graph *graph = Graph::getInstance();
         int min_vertex = INT_MAX;
         int min_length = INT_MAX;
-        int number_of_edges = graph->get_edge_list().get_size();
-        int number_of_vertexes = graph->get_vertex_list().get_size();
 
         int value = 0;
         for (int i = 0; i < number_of_edges; i++) {
@@ -68,13 +67,10 @@ class Djikstra {
                             length[current_vertex] = length[src_node] + current_length;
                         }
                     }
-
                     if (current_length < min_length) {
                         min_length = current_length;
                         min_vertex = current_vertex;
                     }
-
-
                 }
             }
         }
@@ -84,20 +80,12 @@ class Djikstra {
 
 public:
     Djikstra() {
-
-    }
-
-    void djikstra_incidence_matrix(int start_node, int end_node) {
-        Graph *graph = Graph::getInstance();
-
-        int incidence_matrix = graph->get_incidence_matrix();
-
-        int number_of_edges = graph->get_edge_list().get_size();
-        int number_of_vertexes = graph->get_vertex_list().get_size();
-
         length = new int[number_of_vertexes];
         previous = new int[number_of_vertexes];
         visited = new bool[number_of_vertexes];
+    }
+
+    void djikstra_incidence_matrix(int start_node, int end_node) {
 
         for (int i = 0; i < number_of_vertexes; i++) {
             length[i] = INT_MAX;
@@ -115,13 +103,10 @@ public:
 
         show_path(start_node, end_node);
 
-
     }
 
     void djikstra_adjacency_list(int start_node, int end_node) {
-        Graph *graph = Graph::getInstance();
 
-        int number_of_vertexes = graph->get_adjacency_list().get_size();
         if (number_of_vertexes == 0) {
             cout << "Graph is empty !" << endl;
             return;
@@ -161,10 +146,6 @@ public:
         } else {
             cout << "This connection does not exist !" << endl;
         }
-
-        delete[] visited;
-        delete[] length;
-        delete[] previous;
     }
 
     int show_previous(int node) {
@@ -173,8 +154,6 @@ public:
     }
 
     void show_arrays() {
-        Graph *graph = Graph::getInstance();
-        int number_of_vertexes = graph->get_vertex_list().get_size();
         cout << "previous :";
         for (int i = 0; i < number_of_vertexes; i++) {
             cout << Djikstra::previous[i] << " ";
@@ -183,7 +162,14 @@ public:
 
         cout << "length :";
         for (int i = 0; i < number_of_vertexes; i++) {
-            cout << Djikstra::length[i] << " ";
+            int dist = Djikstra::length[i];
+
+            if(dist != INT_MAX){
+                cout <<dist<< " ";
+            }
+            else{
+                cout<<"inf ";
+            }
         }
         cout << endl;
 
@@ -192,6 +178,12 @@ public:
             cout << Djikstra::visited[i] << " ";
         }
         cout << endl;
+    }
+
+    ~Djikstra() {
+        delete[] visited;
+        delete[] length;
+        delete[] previous;
     }
 
 };

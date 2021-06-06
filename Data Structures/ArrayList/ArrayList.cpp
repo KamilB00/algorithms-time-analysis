@@ -26,8 +26,8 @@ void ArrayList<T>::addFirst(T data) {
         tmp[0] = data;
         for (int i = 1; i < size; i++)
             tmp[i] = array[i - 1];
-        delete array;
         array = tmp;
+        delete [] array;
     }
 }
 template <class T>
@@ -35,15 +35,15 @@ void ArrayList<T>::addLast(T data) {
     //adding to empty array
     if (array == nullptr || size == 0)
         addFirst(data);
-        //adding to not array
+        //adding to not empty array
     else {
         T *tmp = new T[size + 1];
         for (int i = 0; i < size; i++)
             tmp[i] = array[i];
         tmp[size] = data;
         size++;
-        delete array;
         array = tmp;
+       // delete [] array;
     }
 }
 
@@ -68,8 +68,8 @@ void ArrayList<T>::add(T data, int index) {
         //part after index
         for (int i = index + 1; i < size; i++)
             tmp[i] = array[i - 1];
-        delete array;
         array = tmp;
+        delete [] array;
     }
 }
 
@@ -90,7 +90,7 @@ void ArrayList<T>::removeFirst() {
         //list contains only one element
     else if (size == 1) {
         size--;
-        delete[] array;
+        delete [] array;
         array = nullptr;
     }
         //list contains more than one element
@@ -186,3 +186,5 @@ ArrayList<T>::ArrayList(T *tmp, int size) {
     }
     this->size = size;
 }
+
+

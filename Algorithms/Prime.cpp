@@ -6,6 +6,7 @@
 #include"../../algorithms-time-analysis/Data Structures/Priority Queue/Queue.cpp"
 #include <algorithm>
 
+
 class Prime {
 
     Graph *graph = Graph::getInstance();
@@ -13,16 +14,19 @@ class Prime {
     int number_of_edges = graph->get_edge_list().get_size();
     int summary_cost = 0;
     bool *visited;
-    Queue *queue = new Queue(number_of_edges);
-    ArrayList<Edge_Element> *mst = new ArrayList<Edge_Element>();
+    Queue *queue;
+    ArrayList<Edge_Element> *mst;
+    int counter = 0;
 
 public:
-    Prime() = default;
+    Prime(){
+
+    }
 
     void primAL(int start_node) {
+        mst = new ArrayList<Edge_Element>();
         visited = new bool[number_of_vertexes];
-
-
+        queue = new Queue(number_of_edges);
         for (int i = 0; i < number_of_vertexes; i++) {
             visited[i] = false;
         }
@@ -34,12 +38,15 @@ public:
         show_MST();
         cout << "Total cost: " << summary_cost << endl;
 
-        delete[] visited;
-        mst->removeAll();
+        delete [] visited;
+        delete queue;
+        //mst->removeAll();
     }
 
-    void primIM(int start_node){
+    void primIM(int start_node) {
+        mst = new ArrayList<Edge_Element>();
         visited = new bool[number_of_vertexes];
+        queue = new Queue(number_of_edges);
         for (int i = 0; i < number_of_vertexes; i++) {
             visited[i] = false;
         }
@@ -49,19 +56,20 @@ public:
         for (int i = 0; i < number_of_vertexes - 1; i++) {
             min = min_vertex_IM(min);
         }
-
         show_MST();
         cout << "Total cost: " << summary_cost << endl;
 
-        delete[] visited;
+        delete [] visited;
+        delete queue;
         mst->removeAll();
     }
 
     int min_vertex_IM(int src_vertex) {
         Edge_Element edge;
+
         int next_vertex = INT_MAX;
         int value = 0;
-        for(int i=0; i<number_of_edges;i++) {
+        for (int i = 0; i < number_of_edges; i++) {
             for (int j = 0; j < number_of_vertexes; j++) {
                 value = graph->get_matrix_value(i, j);
                 if (graph->get_matrix_value(i, src_vertex) > 0 && value > 0 && j != src_vertex) {
@@ -74,16 +82,15 @@ public:
                 }
             }
         }
+        do {
+            edge = queue->front();
+            queue->pop();
 
-            do {
-                edge = queue->front();
-                queue->pop();
+        } while (visited[edge.end_vertex]);
 
-            } while (visited[edge.end_vertex]);
-
-            visited[edge.end_vertex] = true;
-            next_vertex = edge.end_vertex;
-            summary_cost += edge.weight;
+        visited[edge.end_vertex] = true;
+        next_vertex = edge.end_vertex;
+        summary_cost += edge.weight;
 
             mst->addLast(edge);
 
@@ -92,7 +99,7 @@ public:
 
     int min_vertex_AL(int src_vertex) {
 
-        Edge_Element edge;
+        Edge_Element edge{};
         int next_vertex = INT_MAX;
 
         ArrayList<List<ArrayList<int>>> adjacency_list = graph->get_adjacency_list();
@@ -109,16 +116,19 @@ public:
         do {
             edge = queue->front();
             queue->pop();
-
         } while (visited[edge.end_vertex]);
+        counter++;
 
         visited[edge.end_vertex] = true;
         next_vertex = edge.end_vertex;
         summary_cost += edge.weight;
 
-        mst->addLast(edge);
+        if(counter <= number_of_vertexes) {
+            mst->addLast(edge);
+            return next_vertex;
+        }
 
-        return next_vertex;
+        return INT_MAX;
     }
 
     void show_MST() {
@@ -127,6 +137,9 @@ public:
             cout << mst->get(i).start_vertex << " " << mst->get(i).end_vertex << " $:" << mst->get(i).weight << endl;
         }
     }
+
+
+
 
 
 };

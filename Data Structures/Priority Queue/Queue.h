@@ -9,7 +9,6 @@ private:
     Edge_Element *heap; //heap with the edges
     int heapPosition;
 public:
-    int get_heapPosition();
     Queue(int);
     ~Queue();
     Edge_Element front();
