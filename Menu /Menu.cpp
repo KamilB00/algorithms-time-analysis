@@ -208,13 +208,15 @@ inline void Menu::main_screen() {
                             do {
                                 switch (representation) {
                                     case 1: {
-                                        //TODO: Kruskal as a list
-                                        cout << "Kruskal as a list" << endl;
+                                        auto *kruskal = new Kruskal();
+                                        kruskal->kruskalAL();
+
                                         break;
                                     }
                                     case 2: {
-                                        //TODO: Kruskal as a matrix
-                                        cout << "Kruskal as a matrix" << endl;
+                                       auto *kruskal = new Kruskal();
+                                       kruskal->kruskalIM();
+
                                         break;
                                     }
                                 }
@@ -275,7 +277,7 @@ inline void Menu::main_screen() {
                             do {
                                 switch (representation) {
                                     case 1: {
-
+                                        // Bellman-Ford as a incidence list
                                         int start_vertex;
                                         int end_vertex;
                                         Graph *graph = Graph::getInstance();
@@ -295,7 +297,7 @@ inline void Menu::main_screen() {
                                         break;
                                     }
                                     case 2: {
-                                        //TODO: Bellman-Ford as a matrix
+                                        // Bellman-Ford as a matrix
                                         int start_vertex;
                                         int end_vertex;
                                         Graph *graph = Graph::getInstance();

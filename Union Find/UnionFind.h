@@ -1,14 +1,20 @@
-//
-// Created by Kamil Bonkowski on 29/05/2021.
-//
+#include "../Data Structures/Priority Queue/Queue.cpp"
 
-#ifndef ALGORITHMS_TIME_ANALYSIS_UNIONFIND_H
-#define ALGORITHMS_TIME_ANALYSIS_UNIONFIND_H
-
-
-class UnionFind {
-
+struct UnionNode{
+    int up;
+    int rank;
 };
 
-
-#endif //ALGORITHMS_TIME_ANALYSIS_UNIONFIND_H
+class UnionFind{
+private:
+    UnionNode *set;
+    int numOfVer;
+public:
+    UnionFind(int n);
+    ~UnionFind();
+    void makeSet(int v);
+    int findSet(int v);
+    bool isOneSet();
+    void printSet();
+    void unionSets(Edge_Element edge);
+};
