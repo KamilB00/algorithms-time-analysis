@@ -23,7 +23,7 @@ private:
     inline Graph() {
         this->vertex_list = new List<Vertex>();
         this->edge_list = new List<Edge>();
-        this->is_directed = false;
+        this->is_directed = true;
     }
 
     inline static Graph *instance;
@@ -90,7 +90,6 @@ public:
     }
 
     inline void show_the_graph() {
-
         for (int i = 0; i < edge_list->get_size(); i++) {
             cout << "start vertex: " << edge_list->get(i).get_start_vertex().get_id();
             cout << " end vertex: " << edge_list->get(i).get_end_vertex().get_id();

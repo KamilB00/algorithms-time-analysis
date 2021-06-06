@@ -30,7 +30,7 @@ inline void Queue::push(Edge_Element edge) {
 
 inline void Queue::pop(){
     int i, j;
-    Edge_Element edge;
+    Edge_Element edge{};
 
     if(heapPosition){
         edge = heap[--heapPosition];
@@ -49,3 +49,4 @@ inline void Queue::pop(){
         heap[i] = edge;
     }
 }
+

@@ -1,8 +1,3 @@
-//
-// Created by Kamil Bonkowski on 25/05/2021.
-//
-
-
 #include <iostream>
 #include "Menu.h"
 #include "../../algorithms-time-analysis/Algorithms/Djikstra.cpp"
@@ -18,11 +13,10 @@ inline int Menu::algorithm_representation_screen() {
     return select_option(2);
 }
 
-inline int Menu::choose_graph_property_screen(){
-    cout<<"1. directed"<<endl;
-    cout<<"2. undirected"<<endl;
-    cout << endl;
-    cout << "Press 0 to return" << endl;
+inline int Menu::choose_graph_property_screen() {
+    cout << "1. directed" << endl;
+    cout << "2. undirected" << endl;
+
     return select_option(2);
 }
 
@@ -83,15 +77,31 @@ inline void Menu::main_screen() {
                         }
                         case 1: {
                             //wczytaj graf z pliku
-
                             Graph *graph = Graph::getInstance();
+
+                            int isDirected;
+                            isDirected = choose_graph_property_screen();
+                            switch (isDirected) {
+                                case 1: {
+                                    graph->set_is_directed(true);
+                                    break;
+                                }
+                                case 2: {
+                                    graph->set_is_directed(false);
+                                    break;
+                                }
+                                default:
+                                    graph->set_is_directed(true);
+                                    break;
+                            }
+
                             if (graph->get_edge_list().get_size() > 0) {
                                 cout << "Graph already exists !" << endl;
                             } else {
                                 graph->fill_the_graph();
                             }
-                                graph->create_incidence_matrix();
-                                graph->create_adjacency_list();
+                            graph->create_incidence_matrix();
+                            graph->create_adjacency_list();
 
                             break;
                         }
@@ -100,78 +110,94 @@ inline void Menu::main_screen() {
 
                             Graph *graph = Graph::getInstance();
 
-                            if(graph->get_edge_list().get_size() == 0) {
+                            if (graph->get_edge_list().get_size() == 0) {
                                 int representation = choose_graph_property_screen();
 
-                                    switch (representation) {
-                                        case 0: {
-                                            welcome_screen();
-                                            break;
-                                        }
-                                        case 1: {
-                                            // Directed Graph
-                                            graph->set_is_directed(true);
-                                            graph->generate_new_graph(graph->get_is_directed());
-                                            graph->create_incidence_matrix();
-                                            graph->create_adjacency_list();
-                                            break;
-                                        }
-
-                                        case 2: {
-                                            // Undirected Graph
-                                            graph->set_is_directed(false);
-                                            graph->generate_new_graph(graph->get_is_directed());
-                                            graph->create_incidence_matrix();
-                                            graph->create_adjacency_list();
-                                            break;
-                                        }
+                                switch (representation) {
+                                    case 0: {
+                                        welcome_screen();
+                                        break;
                                     }
-                            }else{
-                                cout<<"Delete graph to generate another !"<<endl;
-                            }
+                                    case 1: {
+                                        // Directed Graph
+                                        graph->set_is_directed(true);
+                                        graph->generate_new_graph(graph->get_is_directed());
+                                        graph->create_incidence_matrix();
+                                        graph->create_adjacency_list();
+                                        break;
+                                    }
 
+                                    case 2: {
+                                        // Undirected Graph
+                                        graph->set_is_directed(false);
+                                        graph->generate_new_graph(graph->get_is_directed());
+                                        graph->create_incidence_matrix();
+                                        graph->create_adjacency_list();
+                                        break;
+                                    }
+                                }
+                            } else {
+                                cout << "Delete graph to generate another !" << endl;
+                            }
                             break;
                         }
                         case 3: {
                             //wyświetl graf w postaci listy sąsiedztwa
                             Graph *graph = Graph::getInstance();
-                            if(graph->get_edge_list().get_size()>0) {
+                            if (graph->get_edge_list().get_size() > 0) {
                                 graph->show_adjacency_list();
-                            }else{
-                                cout<<"No graph loaded !"<<endl;
+                            } else {
+                                cout << "No graph loaded !" << endl;
                             }
                             break;
                         }
                         case 4: {
                             //wyświetl graf w postaci macierzy incydencji
                             Graph *graph = Graph::getInstance();
-                            if(graph->get_edge_list().get_size()>0) {
+                            if (graph->get_edge_list().get_size() > 0) {
                                 graph->show_incidence_matrix();
-                            }else{
-                                cout<<"No graph loaded !"<<endl;
+                            } else {
+                                cout << "No graph loaded !" << endl;
                             }
                             break;
                         }
                         case 5: {
                             //PRIME'S ALGORITHM
+
+
                             int representation = algorithm_representation_screen();
+
                             do {
                                 switch (representation) {
+                                    //algorytm prima lista sąsiedztwa
                                     case 1: {
-                                        //TODO: Prime as a list
-                                       auto *prime = new Prime();
-
-                                        prime->primAL(0);
+                                        Graph *graph = Graph::getInstance();
+                                        auto *prime = new Prime();
+                                        int start_vertex;
+                                        int number_of_vertexes = graph->get_vertex_list().get_size();
+                                        cout << "start vertex: ";
+                                        cin >> start_vertex;
+                                        if (start_vertex >= 0 && start_vertex < number_of_vertexes) {
+                                            prime->primAL(start_vertex);
+                                        }
                                         break;
                                     }
                                     case 2: {
-                                        //TODO: Prime as a matrix
+                                        //algorytm prima macierz incydencji
+                                        Graph *graph = Graph::getInstance();
                                         auto *prime = new Prime();
-                                        prime->primIM(0);
-
+                                        int start_vertex;
+                                        int number_of_vertexes = graph->get_vertex_list().get_size();
+                                        cout << "start vertex: ";
+                                        cin >> start_vertex;
+                                        if (start_vertex >= 0 && start_vertex < number_of_vertexes) {
+                                            prime->primIM(start_vertex);
+                                        }
                                         break;
                                     }
                                 }
+
+
                             } while (representation = algorithm_representation_screen());
 
                             break;
@@ -198,45 +224,49 @@ inline void Menu::main_screen() {
                         case 7: {
                             //DJIKSTRA ALGORITHM
                             int representation = algorithm_representation_screen();
-                                switch (representation) {
-                                    case 1: {
-                                        //TODO: Djikstra as a list
-                                        auto *graph = Graph::getInstance();
-                                        auto *djikstra = new Djikstra();
-                                        int start_vertex;
-                                        int end_vertex;
+                            switch (representation) {
+                                case 1: {
 
-                                        int number_of_vertexes = graph->get_vertex_list().get_size();
-                                        cout<<"start vertex: ";
-                                        cin>>start_vertex;
+                                    auto *graph = Graph::getInstance();
+                                    auto *djikstra = new Djikstra();
+                                    int start_vertex;
+                                    int end_vertex;
 
-                                        cout<<"end vertex: ";
-                                        cin>>end_vertex;
-                                        if((start_vertex >= 0 && start_vertex < number_of_vertexes) && (end_vertex >= 0 && end_vertex < number_of_vertexes)){
-                                            djikstra->djikstra_adjacency_list(start_vertex,end_vertex);
-                                        }
-                                        break;
+                                    int number_of_vertexes = graph->get_vertex_list().get_size();
+                                    cout << "start vertex: ";
+                                    cin >> start_vertex;
+
+                                    cout << "end vertex: ";
+                                    cin >> end_vertex;
+                                    if ((start_vertex >= 0 && start_vertex < number_of_vertexes) &&
+                                        (end_vertex >= 0 && end_vertex < number_of_vertexes)) {
+                                        djikstra->djikstra_adjacency_list(start_vertex, end_vertex);
                                     }
-                                    case 2: {
-                                        //TODO: Djikstra as a matrix
-                                        cout << "Djikstra as a matrix" << endl;
-                                        auto *graph = Graph::getInstance();
-                                        auto *djikstra = new Djikstra();
-                                        int start_vertex;
-                                        int end_vertex;
-
-                                        int number_of_vertexes = graph->get_vertex_list().get_size();
-                                        cout<<"start vertex: ";
-                                        cin>>start_vertex;
-
-                                        cout<<"end vertex: ";
-                                        cin>>end_vertex;
-                                        if((start_vertex >= 0 && start_vertex < number_of_vertexes) && (end_vertex >= 0 && end_vertex < number_of_vertexes)){
-                                            djikstra->djikstra_incidence_matrix(start_vertex,end_vertex);
-                                        }
-                                        break;
-                                    }
+                                    delete djikstra;
+                                    break;
                                 }
+                                case 2: {
+
+                                    cout << "Djikstra as a matrix" << endl;
+                                    auto *graph = Graph::getInstance();
+                                    auto *djikstra = new Djikstra();
+                                    int start_vertex;
+                                    int end_vertex;
+
+                                    int number_of_vertexes = graph->get_vertex_list().get_size();
+                                    cout << "start vertex: ";
+                                    cin >> start_vertex;
+
+                                    cout << "end vertex: ";
+                                    cin >> end_vertex;
+                                    if ((start_vertex >= 0 && start_vertex < number_of_vertexes) &&
+                                        (end_vertex >= 0 && end_vertex < number_of_vertexes)) {
+                                        djikstra->djikstra_incidence_matrix(start_vertex, end_vertex);
+                                    }
+                                    delete djikstra;
+                                    break;
+                                }
+                            }
                             break;
                         }
                         case 8: {
@@ -245,24 +275,54 @@ inline void Menu::main_screen() {
                             do {
                                 switch (representation) {
                                     case 1: {
-                                        //TODO: Bellman-Ford as a list
-                                        cout << "Bellman-Ford as a list" << endl;
+
+                                        int start_vertex;
+                                        int end_vertex;
+                                        Graph *graph = Graph::getInstance();
+                                        auto *bellmanFord = new BellmanFord();
+                                        int number_of_vertexes = graph->get_vertex_list().get_size();
+                                        cout << "start vertex: ";
+                                        cin >> start_vertex;
+
+                                        cout << "end vertex: ";
+                                        cin >> end_vertex;
+                                        if ((start_vertex >= 0 && start_vertex < number_of_vertexes) &&
+                                            (end_vertex >= 0 && end_vertex < number_of_vertexes)) {
+
+                                            bellmanFord->bellmanFordAL(start_vertex, end_vertex);
+                                        }
+                                        delete bellmanFord;
                                         break;
                                     }
                                     case 2: {
                                         //TODO: Bellman-Ford as a matrix
-                                        cout << "Bellman-Ford as a matrix" << endl;
+                                        int start_vertex;
+                                        int end_vertex;
+                                        Graph *graph = Graph::getInstance();
+                                        auto *bellmanFord = new BellmanFord();
+                                        int number_of_vertexes = graph->get_vertex_list().get_size();
+                                        cout << "start vertex: ";
+                                        cin >> start_vertex;
+
+                                        cout << "end vertex: ";
+                                        cin >> end_vertex;
+                                        if ((start_vertex >= 0 && start_vertex < number_of_vertexes) &&
+                                            (end_vertex >= 0 && end_vertex < number_of_vertexes)) {
+
+                                            bellmanFord->bellmanFordIM(start_vertex, end_vertex);
+                                        }
+                                        delete bellmanFord;
                                         break;
                                     }
                                 }
                             } while (representation = algorithm_representation_screen());
                             break;
                         }
-                        case 9:{
+                        case 9: {
                             //Delete Graph
                             Graph *graph = Graph::getInstance();
 
-                            if(graph->get_edge_list().get_size() > 0) {
+                            if (graph->get_edge_list().get_size() > 0) {
                                 graph->delete_graph();
                             }
                         }

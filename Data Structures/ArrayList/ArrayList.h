@@ -5,16 +5,15 @@ template <class T>
 
 class ArrayList {
 private:
-    //size of the array
+
     int size{};
-    //dynamic-sized array
-    T * array;
+
+    T *array;
 public:
 
     ArrayList<T>();
 
     ArrayList<T>(T *tmp, int size);
-
 
     void addFirst(T data);
 
