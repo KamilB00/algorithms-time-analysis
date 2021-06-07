@@ -17,12 +17,12 @@ class Kruskal {
     }
 
 public:
-    void kruskalAL() {
+    void kruskalAL(bool show_result) {
         ArrayList<List<ArrayList<int>>> adjacency_list = graph->get_adjacency_list();
 
-        Edge_Element edge;
+        Edge_Element edge{};
         UnionFind set(number_of_vertexes);
-        Queue *queue = new Queue(2 * number_of_edges);
+        auto *queue = new Queue(2 * number_of_edges);
 
         for (int i = 0; i < number_of_vertexes; i++) {
             set.makeSet(i);
@@ -49,14 +49,16 @@ public:
             mst->addLast(edge);
             set.unionSets(edge);
         }
-        show();
+        if(show_result) {
+            show();
+        }
         delete queue;
     }
 
-    void kruskalIM() {
-        Edge_Element edge;
+    void kruskalIM(bool show_result) {
+        Edge_Element edge{};
         UnionFind set(number_of_vertexes);
-        Queue *queue = new Queue(2 * number_of_edges);
+        auto *queue = new Queue(2 * number_of_edges);
 
 
         int weight;
@@ -101,7 +103,9 @@ public:
             mst->addLast(edge);
             set.unionSets(edge);
         }
-        show();
+        if(show_result) {
+            show();
+        }
         delete queue;
     }
 };

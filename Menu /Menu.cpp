@@ -56,6 +56,22 @@ inline int Menu::welcome_screen() {
     return select_option(9);
 }
 
+inline int Menu::expertimental_screen() {
+    cout << " ------------- Experimental Menu -------------- " << endl;
+    cout << "1. Generate Random Graph  " << endl;
+    cout << "2. Show Generated Graph  " << endl;
+    cout << "3. Prim's algorithm" << endl;
+    cout << "4. Kruskal's algorithm" << endl;
+    cout << "5. Djiksra" << endl;
+    cout << "6. Bellman-Ford" << endl;
+    cout << "7. Delete graph" << endl;
+    cout << endl;
+    cout << "Press 0 to return           " << endl;
+    cout << "----------------------------------------------- " << endl;
+
+    return select_option(7);
+}
+
 inline Menu::Menu() = default;
 
 inline void Menu::main_screen() {
@@ -107,39 +123,8 @@ inline void Menu::main_screen() {
                         }
                         case 2: {
                             //wygeneruj losowy graf
+                            cout<<"Only in experimental mode "<<endl;
 
-                            Graph *graph = Graph::getInstance();
-
-                            if (graph->get_edge_list().get_size() == 0) {
-                                int representation = choose_graph_property_screen();
-
-                                switch (representation) {
-                                    case 0: {
-                                        welcome_screen();
-                                        break;
-                                    }
-                                    case 1: {
-                                        // Directed Graph
-                                        graph->set_is_directed(true);
-                                        graph->generate_new_graph(graph->get_is_directed());
-                                        graph->create_incidence_matrix();
-                                        graph->create_adjacency_list();
-                                        break;
-                                    }
-
-                                    case 2: {
-                                        // Undirected Graph
-                                        graph->set_is_directed(false);
-                                        graph->generate_new_graph(graph->get_is_directed());
-                                        graph->create_incidence_matrix();
-                                        graph->create_adjacency_list();
-                                        break;
-                                    }
-                                }
-                            } else {
-                                cout << "Delete graph to generate another !" << endl;
-                            }
-                            break;
                         }
                         case 3: {
                             //wyświetl graf w postaci listy sąsiedztwa
@@ -178,7 +163,7 @@ inline void Menu::main_screen() {
                                         cout << "start vertex: ";
                                         cin >> start_vertex;
                                         if (start_vertex >= 0 && start_vertex < number_of_vertexes) {
-                                            prime->primAL(start_vertex);
+                                            prime->primAL(start_vertex,true);
                                         }
                                         break;
                                     }
@@ -191,12 +176,11 @@ inline void Menu::main_screen() {
                                         cout << "start vertex: ";
                                         cin >> start_vertex;
                                         if (start_vertex >= 0 && start_vertex < number_of_vertexes) {
-                                            prime->primIM(start_vertex);
+                                            prime->primIM(start_vertex,true);
                                         }
                                         break;
                                     }
                                 }
-
 
                             } while (representation = algorithm_representation_screen());
 
@@ -209,13 +193,13 @@ inline void Menu::main_screen() {
                                 switch (representation) {
                                     case 1: {
                                         auto *kruskal = new Kruskal();
-                                        kruskal->kruskalAL();
+                                        kruskal->kruskalAL(true);
 
                                         break;
                                     }
                                     case 2: {
                                        auto *kruskal = new Kruskal();
-                                       kruskal->kruskalIM();
+                                       kruskal->kruskalIM(true);
 
                                         break;
                                     }
@@ -242,7 +226,7 @@ inline void Menu::main_screen() {
                                     cin >> end_vertex;
                                     if ((start_vertex >= 0 && start_vertex < number_of_vertexes) &&
                                         (end_vertex >= 0 && end_vertex < number_of_vertexes)) {
-                                        djikstra->djikstra_adjacency_list(start_vertex, end_vertex);
+                                        djikstra->djikstra_adjacency_list(start_vertex, end_vertex,true);
                                     }
                                     delete djikstra;
                                     break;
@@ -263,7 +247,7 @@ inline void Menu::main_screen() {
                                     cin >> end_vertex;
                                     if ((start_vertex >= 0 && start_vertex < number_of_vertexes) &&
                                         (end_vertex >= 0 && end_vertex < number_of_vertexes)) {
-                                        djikstra->djikstra_incidence_matrix(start_vertex, end_vertex);
+                                        djikstra->djikstra_incidence_matrix(start_vertex, end_vertex,true);
                                     }
                                     delete djikstra;
                                     break;
@@ -291,7 +275,7 @@ inline void Menu::main_screen() {
                                         if ((start_vertex >= 0 && start_vertex < number_of_vertexes) &&
                                             (end_vertex >= 0 && end_vertex < number_of_vertexes)) {
 
-                                            bellmanFord->bellmanFordAL(start_vertex, end_vertex);
+                                            bellmanFord->bellmanFordAL(start_vertex, end_vertex,true);
                                         }
                                         delete bellmanFord;
                                         break;
@@ -311,7 +295,7 @@ inline void Menu::main_screen() {
                                         if ((start_vertex >= 0 && start_vertex < number_of_vertexes) &&
                                             (end_vertex >= 0 && end_vertex < number_of_vertexes)) {
 
-                                            bellmanFord->bellmanFordIM(start_vertex, end_vertex);
+                                            bellmanFord->bellmanFordIM(start_vertex, end_vertex,true);
                                         }
                                         delete bellmanFord;
                                         break;
@@ -332,10 +316,85 @@ inline void Menu::main_screen() {
                 } while (welcome_choice = welcome_screen());
                 break;
             }
-            case 2: { //Experimental mode
+            case 2: { // TODO: Experimental mode
 
-                //TODO:Experimental mode
-                cout << "THIS IS Experimental MODE" << endl;
+                int choice = expertimental_screen();
+                Graph *graph = Graph::getInstance();
+
+                do {
+                    switch (choice) {
+                        case 0: {
+                            mode_selection_screen();
+                            break;
+                        }
+                        case 1: {
+
+
+                            if (graph->get_edge_list().get_size() == 0) {
+                                int representation = choose_graph_property_screen();
+
+                                switch (representation) {
+                                    case 0: {
+                                        welcome_screen();
+                                        break;
+                                    }
+                                    case 1: {
+                                        // Directed Graph
+                                        graph->set_is_directed(true);
+                                        graph->generate_new_graph(graph->get_is_directed());
+                                        graph->create_incidence_matrix();
+                                        graph->create_adjacency_list();
+                                        break;
+                                    }
+
+                                    case 2: {
+                                        // Undirected Graph
+                                        graph->set_is_directed(false);
+                                        graph->generate_new_graph(graph->get_is_directed());
+                                        graph->create_incidence_matrix();
+                                        graph->create_adjacency_list();
+                                        break;
+                                    }
+                                }
+                            } else {
+                                cout << "Delete graph to generate another !" << endl;
+                            }
+                            break;
+                        }
+                        case 2:
+                        {
+                            graph->show_the_graph();
+                            break;
+                        }
+                        case 3:
+                        {
+                            // TODO: Prime experiment
+                            break;
+                        }
+                        case 4:
+                        {
+                            // TODO: Kruskal experiment
+                            break;
+                        }
+                        case 5:
+                        {
+                            // TODO: Djikstra experiment
+                            break;
+                        }
+                        case 6:
+                        {
+                            // TODO: Bellman ford experiment
+                            break;
+                        }
+                        case 7:
+                        {
+                            // TODO: Delete graph experiment
+                            break;
+                        }
+
+                    }
+                }while (choice = expertimental_screen());
+
 
                 break;
             }

@@ -22,7 +22,7 @@ public:
 
     }
 
-    void primAL(int start_node) {
+    void primAL(int start_node, bool show_result) {
         mst = new ArrayList<Edge_Element>();
         visited = new bool[number_of_vertexes];
         queue = new Queue(number_of_edges);
@@ -34,15 +34,16 @@ public:
         for (int i = 0; i < number_of_vertexes - 1; i++) {
             min = min_vertex_AL(min);
         }
-        show_MST();
-        cout << "Total cost: " << summary_cost << endl;
-
+        if(show_result) {
+            show_MST();
+            cout << "Total cost: " << summary_cost << endl;
+        }
         delete [] visited;
         delete queue;
-        //mst->removeAll();
+        mst->removeAll();
     }
 
-    void primIM(int start_node) {
+    void primIM(int start_node, bool show_result) {
         mst = new ArrayList<Edge_Element>();
         visited = new bool[number_of_vertexes];
         queue = new Queue(number_of_edges);
@@ -55,9 +56,10 @@ public:
         for (int i = 0; i < number_of_vertexes - 1; i++) {
             min = min_vertex_IM(min);
         }
-        show_MST();
-        cout << "Total cost: " << summary_cost << endl;
-
+        if(show_result) {
+            show_MST();
+            cout << "Total cost: " << summary_cost << endl;
+        }
         delete [] visited;
         delete queue;
         mst->removeAll();
