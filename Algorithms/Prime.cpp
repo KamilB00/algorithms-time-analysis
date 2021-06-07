@@ -14,7 +14,7 @@ class Prime {
     int summary_cost = 0;
     bool *visited;
     Queue *queue;
-    ArrayList<Edge_Element> *mst;
+    List<Edge_Element> *mst;
     int counter = 0;
 
 public:
@@ -23,7 +23,7 @@ public:
     }
 
     void primAL(int start_node, bool show_result) {
-        mst = new ArrayList<Edge_Element>();
+        mst = new List<Edge_Element>();
         visited = new bool[number_of_vertexes];
         queue = new Queue(number_of_edges);
         for (int i = 0; i < number_of_vertexes; i++) {
@@ -40,11 +40,12 @@ public:
         }
         delete [] visited;
         delete queue;
-        mst->removeAll();
+
+
     }
 
     void primIM(int start_node, bool show_result) {
-        mst = new ArrayList<Edge_Element>();
+        mst = new List<Edge_Element>();
         visited = new bool[number_of_vertexes];
         queue = new Queue(number_of_edges);
         for (int i = 0; i < number_of_vertexes; i++) {
@@ -62,7 +63,8 @@ public:
         }
         delete [] visited;
         delete queue;
-        mst->removeAll();
+
+
     }
 
     int min_vertex_IM(int src_vertex) {
@@ -138,9 +140,6 @@ public:
             cout << mst->get(i).start_vertex << " " << mst->get(i).end_vertex << " $:" << mst->get(i).weight << endl;
         }
     }
-
-
-
 
 
 };

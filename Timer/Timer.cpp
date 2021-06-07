@@ -10,12 +10,11 @@ class Timer {
     high_resolution_clock::time_point start, end;
     duration<float> duration;
 
+public:
     Timer()
     {
         start = high_resolution_clock::now();
     }
-
-    ~Timer(){}
 
     std::chrono::duration<float> getTime()
     {
@@ -24,4 +23,5 @@ class Timer {
         return duration;
     }
 
+    ~Timer(){}
 };

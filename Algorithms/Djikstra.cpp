@@ -98,6 +98,7 @@ public:
         visited[start_node] = true;
 
         for (int i = 0; i < number_of_vertexes; i++) {
+            if(min_vertex != INT_MAX)
             min_vertex = min_next_vertex_IM(min_vertex);
         }
 
@@ -127,11 +128,13 @@ public:
         visited[start_node] = true;
 
         for (int i = 0; i < number_of_vertexes; i++) {
+            if(min_vertex != INT_MAX)
             min_vertex = min_next_vertex_AL(min_vertex);
         }
         if (show_result) {
             show_path(start_node, end_node);
         }
+
     }
 
     void show_path(int start_node, int end_node) {

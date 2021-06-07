@@ -26,10 +26,12 @@ void ArrayList<T>::addFirst(T data) {
         tmp[0] = data;
         for (int i = 1; i < size; i++)
             tmp[i] = array[i - 1];
+
+        delete array;
         array = tmp;
-        delete [] array;
     }
 }
+
 template <class T>
 void ArrayList<T>::addLast(T data) {
     //adding to empty array
@@ -42,8 +44,9 @@ void ArrayList<T>::addLast(T data) {
             tmp[i] = array[i];
         tmp[size] = data;
         size++;
+
+        delete array;
         array = tmp;
-       // delete [] array;
     }
 }
 
@@ -68,8 +71,10 @@ void ArrayList<T>::add(T data, int index) {
         //part after index
         for (int i = index + 1; i < size; i++)
             tmp[i] = array[i - 1];
+
+        delete array;
         array = tmp;
-        delete [] array;
+
     }
 }
 
@@ -100,7 +105,7 @@ void ArrayList<T>::removeFirst() {
         for (int i = 1; i < size + 1; i++) {
             tmp[i - 1] = array[i];
         }
-        delete[]array;
+        delete array;
         array = tmp;
     }
 }
@@ -141,7 +146,7 @@ void ArrayList<T>::remove(int index) {
         //part after index
         for (int i = index + 1; i < size + 1; i++)
             tmp[i - 1] = array[i];
-        delete[] array;
+        delete array;
         array = tmp;
     }
 }

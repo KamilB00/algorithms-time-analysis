@@ -1,6 +1,9 @@
 #include <iostream>
 #include "Menu.h"
 #include "../../algorithms-time-analysis/Algorithms/Djikstra.cpp"
+#include"../../algorithms-time-analysis/Timer/Timer.cpp"
+#include <string>
+
 
 using namespace std;
 
@@ -123,7 +126,7 @@ inline void Menu::main_screen() {
                         }
                         case 2: {
                             //wygeneruj losowy graf
-                            cout<<"Only in experimental mode "<<endl;
+                            cout << "Only in experimental mode " << endl;
 
                         }
                         case 3: {
@@ -149,7 +152,6 @@ inline void Menu::main_screen() {
                         case 5: {
                             //PRIME'S ALGORITHM
 
-
                             int representation = algorithm_representation_screen();
 
                             do {
@@ -163,7 +165,7 @@ inline void Menu::main_screen() {
                                         cout << "start vertex: ";
                                         cin >> start_vertex;
                                         if (start_vertex >= 0 && start_vertex < number_of_vertexes) {
-                                            prime->primAL(start_vertex,true);
+                                            prime->primAL(start_vertex, true);
                                         }
                                         break;
                                     }
@@ -176,7 +178,7 @@ inline void Menu::main_screen() {
                                         cout << "start vertex: ";
                                         cin >> start_vertex;
                                         if (start_vertex >= 0 && start_vertex < number_of_vertexes) {
-                                            prime->primIM(start_vertex,true);
+                                            prime->primIM(start_vertex, true);
                                         }
                                         break;
                                     }
@@ -198,8 +200,8 @@ inline void Menu::main_screen() {
                                         break;
                                     }
                                     case 2: {
-                                       auto *kruskal = new Kruskal();
-                                       kruskal->kruskalIM(true);
+                                        auto *kruskal = new Kruskal();
+                                        kruskal->kruskalIM(true);
 
                                         break;
                                     }
@@ -226,7 +228,7 @@ inline void Menu::main_screen() {
                                     cin >> end_vertex;
                                     if ((start_vertex >= 0 && start_vertex < number_of_vertexes) &&
                                         (end_vertex >= 0 && end_vertex < number_of_vertexes)) {
-                                        djikstra->djikstra_adjacency_list(start_vertex, end_vertex,true);
+                                        djikstra->djikstra_adjacency_list(start_vertex, end_vertex, true);
                                     }
                                     delete djikstra;
                                     break;
@@ -247,7 +249,7 @@ inline void Menu::main_screen() {
                                     cin >> end_vertex;
                                     if ((start_vertex >= 0 && start_vertex < number_of_vertexes) &&
                                         (end_vertex >= 0 && end_vertex < number_of_vertexes)) {
-                                        djikstra->djikstra_incidence_matrix(start_vertex, end_vertex,true);
+                                        djikstra->djikstra_incidence_matrix(start_vertex, end_vertex, true);
                                     }
                                     delete djikstra;
                                     break;
@@ -275,7 +277,7 @@ inline void Menu::main_screen() {
                                         if ((start_vertex >= 0 && start_vertex < number_of_vertexes) &&
                                             (end_vertex >= 0 && end_vertex < number_of_vertexes)) {
 
-                                            bellmanFord->bellmanFordAL(start_vertex, end_vertex,true);
+                                            bellmanFord->bellmanFordAL(start_vertex, end_vertex, true);
                                         }
                                         delete bellmanFord;
                                         break;
@@ -295,7 +297,7 @@ inline void Menu::main_screen() {
                                         if ((start_vertex >= 0 && start_vertex < number_of_vertexes) &&
                                             (end_vertex >= 0 && end_vertex < number_of_vertexes)) {
 
-                                            bellmanFord->bellmanFordIM(start_vertex, end_vertex,true);
+                                            bellmanFord->bellmanFordIM(start_vertex, end_vertex, true);
                                         }
                                         delete bellmanFord;
                                         break;
@@ -317,9 +319,14 @@ inline void Menu::main_screen() {
                 break;
             }
             case 2: { // TODO: Experimental mode
-
+                float summary_time = 0;
                 int choice = expertimental_screen();
                 Graph *graph = Graph::getInstance();
+                float unitFactor = 1000000000.0f;
+                string string_unitFactor = " [ns]";
+                int times = 0;
+                cout << "How many times should time be measured: ";
+                cin >> times;
 
                 do {
                     switch (choice) {
@@ -361,40 +368,201 @@ inline void Menu::main_screen() {
                             }
                             break;
                         }
-                        case 2:
-                        {
+                        case 2: {
                             graph->show_the_graph();
                             break;
                         }
-                        case 3:
-                        {
-                            // TODO: Prime experiment
+                        case 3: {
+                            // Prime experiment
+
+                            int representation = algorithm_representation_screen();
+
+                            do {
+                                switch (representation) {
+                                    //algorytm prima lista sąsiedztwa TEST
+                                    case 1: {
+                                        for (int i = 0; i < times; i++) {
+                                            auto *prime = new Prime();
+                                            auto *timer = new Timer();
+                                            prime->primAL(0, false);
+                                            summary_time = summary_time + timer->getTime().count() * unitFactor;
+
+                                            delete prime;
+                                            delete timer;
+                                        }
+
+                                        cout << "Prim's (adjacency list) average time: " << summary_time / (float) times
+                                             << string_unitFactor<<endl;
+                                        summary_time = 0;
+                                        break;
+                                    }
+                                    case 2: {
+                                        //algorytm prima macierz incydencji TEST
+                                        for (int i = 0; i < times; i++) {
+                                            auto *prime = new Prime();
+                                            auto *timer = new Timer();
+                                            prime->primIM(0, false);
+                                            summary_time = summary_time + timer->getTime().count() * unitFactor;
+
+                                            delete prime;
+                                            delete timer;
+                                        }
+                                        cout << "Prim's (incidence matrix) average time: " << summary_time / (float) times
+                                             << string_unitFactor << endl;
+                                        summary_time = 0;
+
+                                        break;
+                                    }
+                                }
+
+                            } while (representation = algorithm_representation_screen());
+
                             break;
+
                         }
-                        case 4:
-                        {
+                        case 4: {
                             // TODO: Kruskal experiment
+
+                            int representation = algorithm_representation_screen();
+                            do {
+                                switch (representation) {
+                                    case 1:
+                                    {
+                                        for(int i=0;i<times; i++) {
+                                            auto *kruskal = new Kruskal();
+                                            auto *timer = new Timer();
+                                            kruskal->kruskalAL(false);
+                                            summary_time = summary_time + timer->getTime().count() * unitFactor;
+
+                                            delete timer;
+                                            delete kruskal;
+
+                                        }
+                                        cout << "Kruskal's (adjacency list) average time: " << summary_time / (float) times
+                                             << string_unitFactor << endl;
+                                        summary_time = 0;
+
+                                        break;
+                                    }
+                                    case 2:
+                                    {
+                                        for(int i=0;i<times; i++) {
+                                            auto *kruskal = new Kruskal();
+                                            auto *timer = new Timer();
+                                            kruskal->kruskalIM(false);
+                                            summary_time = summary_time + timer->getTime().count() * unitFactor;
+
+                                            delete timer;
+                                            delete kruskal;
+                                        }
+                                        cout << "Kruskal's (incidence matrix) average time: " << summary_time / (float) times
+                                             << string_unitFactor << endl;
+                                        summary_time = 0;
+
+                                        break;
+                                    }
+                                }
+                            }while (representation = algorithm_representation_screen());
+
                             break;
                         }
-                        case 5:
-                        {
-                            // TODO: Djikstra experiment
+                        case 5: {
+
+                            int end_vertex = graph->get_vertex_list().get_size()-1;
+
+                            int representation = algorithm_representation_screen();
+                            do {
+                                switch (representation) {
+                                    case 1: {
+                                        for(int i=0;i<times; i++) {
+                                            auto *djikstra = new Djikstra();
+                                            auto *timer = new Timer();
+                                            djikstra->djikstra_adjacency_list(0, end_vertex, false);
+                                            summary_time = summary_time + timer->getTime().count() * unitFactor;
+
+                                            delete djikstra;
+                                            delete timer;
+                                        }
+                                        cout << "Djikstra (adjacency list) average time: " << summary_time / (float) times
+                                             << string_unitFactor << endl;
+                                        summary_time = 0;
+
+                                        break;
+                                    }
+                                    case 2: {
+
+                                        for(int i=0;i<times; i++) {
+                                            auto *djikstra = new Djikstra();
+                                            auto *timer = new Timer();
+                                            djikstra->djikstra_incidence_matrix(0, end_vertex, false);
+                                            summary_time = summary_time + timer->getTime().count() * unitFactor;
+
+                                            delete djikstra;
+                                            delete timer;
+                                        }
+                                        cout << "Djikstra (incidence matrix) average time: " << summary_time / (float) times
+                                             << string_unitFactor << endl;
+                                        summary_time = 0;
+                                        break;
+                                    }
+                                }
+                            }while (representation = algorithm_representation_screen());
+
                             break;
                         }
-                        case 6:
-                        {
+                        case 6: {
                             // TODO: Bellman ford experiment
+                            int end_vertex = graph->get_vertex_list().get_size()/2;
+
+                            int representation = algorithm_representation_screen();
+                            do {
+                                switch (representation) {
+                                    case 1: {
+                                        for (int i = 0; i < times; i++) {
+                                            auto *bellmanFord = new BellmanFord();
+                                            auto *timer = new Timer();
+                                            bellmanFord->bellmanFordAL(0, end_vertex, false);
+                                            summary_time = summary_time + timer->getTime().count() * unitFactor;
+
+                                            delete bellmanFord;
+                                            delete timer;
+                                        }
+                                        cout << "Bellman Ford (adjacency list) average time: " << summary_time / (float) times
+                                             << string_unitFactor << endl;
+                                        summary_time = 0;
+                                        break;
+                                    }
+
+                                    case 2:
+                                    {
+                                        for (int i = 0; i < times; i++) {
+                                            auto *bellmanFord = new BellmanFord();
+                                            auto *timer = new Timer();
+                                            bellmanFord->bellmanFordIM(0, end_vertex, false);
+                                            summary_time = summary_time + timer->getTime().count() * unitFactor;
+
+                                            delete bellmanFord;
+                                            delete timer;
+                                        }
+                                        cout << "Bellman Ford (incidence matrix) average time: " << summary_time / (float) times
+                                             << string_unitFactor << endl;
+                                        summary_time = 0;
+                                        break;
+                                    }
+                                }
+                            }while (representation = algorithm_representation_screen());
+
                             break;
                         }
-                        case 7:
-                        {
-                            // TODO: Delete graph experiment
+                        case 7: {
+                            if (graph->get_edge_list().get_size() > 0) {
+                                graph->delete_graph();
+                            }
                             break;
                         }
 
                     }
-                }while (choice = expertimental_screen());
-
+                } while (choice = expertimental_screen());
 
                 break;
             }
