@@ -13,6 +13,7 @@ public:
     int mode_selection_screen();
     int algorithm_representation_screen();
     int choose_graph_property_screen();
+    int expertimental_screen();
 };
 
 

@@ -85,7 +85,7 @@ public:
         visited = new bool[number_of_vertexes];
     }
 
-    void djikstra_incidence_matrix(int start_node, int end_node) {
+    void djikstra_incidence_matrix(int start_node, int end_node, bool show_result) {
 
         for (int i = 0; i < number_of_vertexes; i++) {
             length[i] = INT_MAX;
@@ -98,14 +98,16 @@ public:
         visited[start_node] = true;
 
         for (int i = 0; i < number_of_vertexes; i++) {
+            if(min_vertex != INT_MAX)
             min_vertex = min_next_vertex_IM(min_vertex);
         }
 
-        show_path(start_node, end_node);
-
+        if (show_result) {
+            show_path(start_node, end_node);
+        }
     }
 
-    void djikstra_adjacency_list(int start_node, int end_node) {
+    void djikstra_adjacency_list(int start_node, int end_node, bool show_result) {
 
         if (number_of_vertexes == 0) {
             cout << "Graph is empty !" << endl;
@@ -126,10 +128,13 @@ public:
         visited[start_node] = true;
 
         for (int i = 0; i < number_of_vertexes; i++) {
+            if(min_vertex != INT_MAX)
             min_vertex = min_next_vertex_AL(min_vertex);
         }
+        if (show_result) {
+            show_path(start_node, end_node);
+        }
 
-        show_path(start_node, end_node);
     }
 
     void show_path(int start_node, int end_node) {
@@ -164,11 +169,10 @@ public:
         for (int i = 0; i < number_of_vertexes; i++) {
             int dist = Djikstra::length[i];
 
-            if(dist != INT_MAX){
-                cout <<dist<< " ";
-            }
-            else{
-                cout<<"inf ";
+            if (dist != INT_MAX) {
+                cout << dist << " ";
+            } else {
+                cout << "inf ";
             }
         }
         cout << endl;

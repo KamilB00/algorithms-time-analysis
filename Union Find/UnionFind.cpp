@@ -25,19 +25,19 @@ inline int UnionFind::findSet(int v){
 }
 
 inline void UnionFind::unionSets(Edge_Element edge){
-    int root1, root2;
+    int rootX, rootY;
 
-    root1 = findSet(edge.start_vertex);
-    root2 = findSet(edge.end_vertex);
+    rootX = findSet(edge.start_vertex);
+    rootY = findSet(edge.end_vertex);
 
-    if(root1 != root2){
-        if(set[root1].rank > set[root2].rank){
-            set[root2].up = root1;
+    if(rootX != rootY){
+        if(set[rootX].rank > set[rootY].rank){
+            set[rootY].up = rootX;
         }
         else{
-            set[root1].up = root2;
-            if(set[root1].rank == set[root2].rank){
-                set[root2].rank++;
+            set[rootX].up = rootY;
+            if(set[rootX].rank == set[rootY].rank){
+                set[rootY].rank++;
             }
         }
     }

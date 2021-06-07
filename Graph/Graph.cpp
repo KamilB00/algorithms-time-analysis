@@ -90,10 +90,13 @@ public:
     }
 
     inline void show_the_graph() {
+        cout<<"start vertex"<<"\t"<<"end vertex"<<"\t"<<"weight"<<endl;
         for (int i = 0; i < edge_list->get_size(); i++) {
-            cout << "start vertex: " << edge_list->get(i).get_start_vertex().get_id();
-            cout << " end vertex: " << edge_list->get(i).get_end_vertex().get_id();
-            cout << " weight: " << edge_list->get(i).get_weight() << endl;
+            int start_vertex = edge_list->get(i).get_start_vertex().get_id();
+            int end_vertex = edge_list->get(i).get_end_vertex().get_id();
+            int weight = edge_list->get(i).get_weight();
+
+            cout<<start_vertex<<"\t"<<end_vertex<<"\t"<<weight<<endl;
         }
     }
 

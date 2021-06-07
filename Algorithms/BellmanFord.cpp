@@ -20,7 +20,6 @@ class BellmanFord {
 
     ArrayList<List<ArrayList<int>>> adjacency_list;
 
-
     void show_path(int start_node, int end_node) {
         if (distance[end_node] != INT_MAX) {
             int node = end_node;
@@ -63,7 +62,7 @@ class BellmanFord {
     }
 
 public:
-    void bellmanFordAL(int src_node, int end_node) {
+    void bellmanFordAL(int src_node, int end_node,bool show_result) {
         adjacency_list = graph->get_adjacency_list();
 
         distance = new int[number_of_vertexes];
@@ -94,13 +93,14 @@ public:
             if (stop_condition) break;
         }
 
-       show_path(src_node, end_node);
-
+        if(show_result) {
+            show_path(src_node, end_node);
+        }
         delete[] distance;
         delete[] previous;
     }
 
-    void bellmanFordIM(int src_node, int end_node) {
+    void bellmanFordIM(int src_node, int end_node, bool show_result) {
         adjacency_list = graph->get_adjacency_list();
 
         distance = new int[number_of_vertexes];
@@ -146,8 +146,9 @@ public:
             }
         }
 
-        show_path(src_node, end_node);
-
+        if(show_result) {
+            show_path(src_node, end_node);
+        }
         delete[] distance;
         delete[] previous;
     }
