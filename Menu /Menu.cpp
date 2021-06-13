@@ -117,7 +117,11 @@ inline void Menu::main_screen() {
                             if (graph->get_edge_list().get_size() > 0) {
                                 cout << "Graph already exists !" << endl;
                             } else {
-                                graph->fill_the_graph();
+                                string path;
+
+                                cout<<"Source path :";
+                                cin>>path;
+                                graph->fill_the_graph(path);
                             }
                             graph->create_incidence_matrix();
                             graph->create_adjacency_list();

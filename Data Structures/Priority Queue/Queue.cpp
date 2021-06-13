@@ -9,7 +9,7 @@ inline Queue::~Queue(){
     delete [] heap;
 }
 
-inline Edge_Element Queue::front(){
+inline Edge_Element Queue::get_first(){
     return heap[0];
 }
 

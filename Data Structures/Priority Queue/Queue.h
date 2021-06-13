@@ -11,7 +11,7 @@ private:
 public:
     Queue(int);
     ~Queue();
-    Edge_Element front();
+    Edge_Element get_first();
     void pop();
     void push(Edge_Element edge);
 };

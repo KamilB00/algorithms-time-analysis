@@ -86,7 +86,7 @@ public:
             }
         }
         do {
-            edge = queue->front();
+            edge = queue->get_first();
             queue->pop();
 
         } while (visited[edge.end_vertex]);
@@ -117,7 +117,7 @@ public:
         }
 
         do {
-            edge = queue->front();
+            edge = queue->get_first();
             queue->pop();
         } while (visited[edge.end_vertex]);
         counter++;

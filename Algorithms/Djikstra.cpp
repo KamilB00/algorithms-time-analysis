@@ -21,7 +21,7 @@ class Djikstra {
 
     int min_next_vertex_AL(int src_node) {
 
-        int min_vertex = INT_MAX;
+        int min_vertex = -1;
         int min_length = INT_MAX;
         int number_of_neighbours = graph->get_adjacency_list().get(src_node).get_size();
 
@@ -31,24 +31,27 @@ class Djikstra {
             int current_length = graph->get_adjacency_list().get(src_node).get(i).get(1);
 
             if (!visited[current_vertex]) {
-                visited[current_vertex] = true;
 
                 if (length[src_node] + current_length < length[current_vertex]) {
                     previous[current_vertex] = src_node;
                     length[current_vertex] = length[src_node] + current_length;
                 }
             }
+        }
 
-            if (current_length < min_length) {
-                min_length = current_length;
-                min_vertex = current_vertex;
+        for (int i = 0; i < number_of_vertexes; i++) {
+            if (!visited[i] && (min_length > length[i])) {
+                min_length = length[i];
+                min_vertex = i;
             }
         }
+        visited[min_vertex] = true;
+
         return min_vertex;
     }
 
     int min_next_vertex_IM(int src_node) {
-        int min_vertex = INT_MAX;
+        int min_vertex = -1;
         int min_length = INT_MAX;
 
         int value = 0;
@@ -60,20 +63,24 @@ class Djikstra {
                     int current_vertex = j;
 
                     if (!visited[current_vertex]) {
-                        visited[current_vertex] = true;
 
                         if (length[src_node] + current_length < length[current_vertex]) {
                             previous[current_vertex] = src_node;
                             length[current_vertex] = length[src_node] + current_length;
                         }
                     }
-                    if (current_length < min_length) {
-                        min_length = current_length;
-                        min_vertex = current_vertex;
-                    }
+
                 }
             }
         }
+
+        for (int i = 0; i < number_of_vertexes; i++) {
+            if (!visited[i] && (min_length > length[i])) {
+                min_length = length[i];
+                min_vertex = i;
+            }
+        }
+        visited[min_vertex] = true;
         return min_vertex;
 
     }
@@ -98,8 +105,17 @@ public:
         visited[start_node] = true;
 
         for (int i = 0; i < number_of_vertexes; i++) {
-            if(min_vertex != INT_MAX)
+
             min_vertex = min_next_vertex_IM(min_vertex);
+
+            if (min_vertex == -1) {
+                for (int j = 0; j < number_of_vertexes; j++) {
+                    if (visited[j]) {
+
+                    }
+                }
+            }
+
         }
 
         if (show_result) {
@@ -108,7 +124,7 @@ public:
     }
 
     void djikstra_adjacency_list(int start_node, int end_node, bool show_result) {
-
+        int next = 0;
         if (number_of_vertexes == 0) {
             cout << "Graph is empty !" << endl;
             return;
@@ -128,8 +144,9 @@ public:
         visited[start_node] = true;
 
         for (int i = 0; i < number_of_vertexes; i++) {
-            if(min_vertex != INT_MAX)
-            min_vertex = min_next_vertex_AL(min_vertex);
+            if (min_vertex != -1) {
+                min_vertex = min_next_vertex_AL(min_vertex);
+            }
         }
         if (show_result) {
             show_path(start_node, end_node);

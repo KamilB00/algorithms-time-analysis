@@ -60,11 +60,11 @@ public:
         return instance;
     }
 
-    inline void fill_the_graph() {
+    inline void fill_the_graph(string &path) {
 
         fstream in;
-        in.open("/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/graf.txt", ios::in);
-        if (!in.good()) in.open("/Users/kamilbonkowski/CLionProjects/algorithms-time-analysis/graf.txt", ios::in);
+        in.open(path, ios::in);
+        if (!in.good()) in.open(path, ios::in);
 
         if (in.good()) {
             int number_of_edges, number_of_vertexes;
