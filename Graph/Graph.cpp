@@ -196,7 +196,6 @@ public:
         int array_size = adjacency_list->get_size();
         int inner_list_size;
 
-
         for (int i = 0; i < array_size; i++) {
             inner_list_size = adjacency_list->get(i).get_size();
             for (int j = 0; j < inner_list_size; j++) {
@@ -219,13 +218,12 @@ public:
             delete_incidence_matrix();
             delete_adjacency_list();
         }
-
         vertex_list->removeAll();
         edge_list->removeAll();
     }
 
-    inline int
-    calculate_edges(int density, int number_of_vertexes, bool directed) { // returns number of edges needed in the graph
+    // returns number of edges needed in the graph
+    inline int calculate_edges(int density, int number_of_vertexes, bool directed) {
         int difference = 0;
         int max_edges_number = 0;
         int possible_density = 0;
@@ -254,6 +252,7 @@ public:
         return number_of_edges;
     }
 
+    // connects edges to make graph connected
     inline int make_connected_graph(int number_of_vertexes, bool directed, int number_of_edges) {
         srand(time(NULL));
 
@@ -269,6 +268,7 @@ public:
         return edges_left;
     }
 
+    // filling connected graph with edges
     inline void filling_connected_graph(int edges_left, bool directed) {
         bool is_connected;
         int weight;
@@ -301,6 +301,7 @@ public:
         }
     }
 
+    // check function if an edge already exists
     bool is_already_connected(int vertex_1, int vertex_2) {
         for (int i = 0; i < edge_list->get_size(); i++) {
             if (edge_list->get(i).get_start_vertex().get_id() == vertex_1 &&
@@ -315,6 +316,7 @@ public:
         }
     }
 
+
     inline void generate_new_graph(bool directed) {
         int number_of_vertexes = 0;
         int density = 0;
@@ -325,7 +327,7 @@ public:
         cout << "Number of vertexes :";
         cin >> number_of_vertexes;
 
-        int minimum_number_of_edges = number_of_vertexes - 1; // to make graph connected
+        int minimum_number_of_edges = number_of_vertexes - 1; // minimum edges to make graph connected
         max_edges_undirected = (number_of_vertexes * (number_of_vertexes - 1)) / 2;
 
         if (directed) {
@@ -349,7 +351,6 @@ public:
             auto *vertex = new Vertex(i);
             vertex_list->addLast(*vertex);
         }
-
         //making graph connected
 
         int edges_left = make_connected_graph(number_of_vertexes, directed, number_of_edges);

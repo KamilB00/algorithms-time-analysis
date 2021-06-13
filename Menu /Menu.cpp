@@ -322,7 +322,7 @@ inline void Menu::main_screen() {
                 } while (welcome_choice = welcome_screen());
                 break;
             }
-            case 2: { // TODO: Experimental mode
+            case 2: {
                 float summary_time = 0;
                 int choice = expertimental_screen();
                 Graph *graph = Graph::getInstance();
@@ -383,7 +383,7 @@ inline void Menu::main_screen() {
 
                             do {
                                 switch (representation) {
-                                    //algorytm prima lista sąsiedztwa TEST
+                                    //Prime's algorithm adjacency list TEST
                                     case 1: {
                                         for (int i = 0; i < times; i++) {
                                             auto *prime = new Prime();
@@ -401,7 +401,7 @@ inline void Menu::main_screen() {
                                         break;
                                     }
                                     case 2: {
-                                        //algorytm prima macierz incydencji TEST
+                                        //Prime's algorithm incidence matrix TEST
                                         for (int i = 0; i < times; i++) {
                                             auto *prime = new Prime();
                                             auto *timer = new Timer();
@@ -425,11 +425,11 @@ inline void Menu::main_screen() {
 
                         }
                         case 4: {
-                            // TODO: Kruskal experiment
 
                             int representation = algorithm_representation_screen();
                             do {
                                 switch (representation) {
+                                    //Kruskal's algorithm adjacency list TEST
                                     case 1:
                                     {
                                         for(int i=0;i<times; i++) {
@@ -449,6 +449,7 @@ inline void Menu::main_screen() {
                                         break;
                                     }
                                     case 2:
+                                        //Kruskal's algorithm incidence matrix TEST
                                     {
                                         for(int i=0;i<times; i++) {
                                             auto *kruskal = new Kruskal();
@@ -477,6 +478,7 @@ inline void Menu::main_screen() {
                             int representation = algorithm_representation_screen();
                             do {
                                 switch (representation) {
+                                    //Djikstra algorithm adjacency list TEST
                                     case 1: {
                                         for(int i=0;i<times; i++) {
                                             auto *djikstra = new Djikstra();
@@ -494,7 +496,7 @@ inline void Menu::main_screen() {
                                         break;
                                     }
                                     case 2: {
-
+                                        //Kruskal's algorithm incidence matrix TEST
                                         for(int i=0;i<times; i++) {
                                             auto *djikstra = new Djikstra();
                                             auto *timer = new Timer();
@@ -515,12 +517,13 @@ inline void Menu::main_screen() {
                             break;
                         }
                         case 6: {
-                            // TODO: Bellman ford experiment
+
                             int end_vertex = graph->get_vertex_list().get_size()/2;
 
                             int representation = algorithm_representation_screen();
                             do {
                                 switch (representation) {
+                                    //Bellman Ford algorithm adjacency list TEST
                                     case 1: {
                                         for (int i = 0; i < times; i++) {
                                             auto *bellmanFord = new BellmanFord();
@@ -538,6 +541,7 @@ inline void Menu::main_screen() {
                                     }
 
                                     case 2:
+                                        //Bellman Ford algorithm incidence matrix TEST
                                     {
                                         for (int i = 0; i < times; i++) {
                                             auto *bellmanFord = new BellmanFord();
