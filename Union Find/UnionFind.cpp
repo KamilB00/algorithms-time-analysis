@@ -42,20 +42,3 @@ inline void UnionFind::unionSets(Edge_Element edge){
         }
     }
 }
-
-inline bool UnionFind::isOneSet(){
-    int firstParent = findSet(0);
-
-    for(int i = 1; i < this->numOfVer; i++){
-        if(firstParent != findSet(i)) return false;
-    }
-    return true;
-}
-
-inline void UnionFind::printSet(){
-    cout<<"Set: ";
-    for(int i = 0; i < this->numOfVer; i++){
-        cout<<findSet(i)<<" ";
-    }
-    cout<<endl;
-}

@@ -9,11 +9,13 @@ class Kruskal {
     int number_of_vertexes = graph->get_vertex_list().get_size();
     int number_of_edges = graph->get_edge_list().get_size();
     List<Edge_Element> *mst = new List<Edge_Element>();
+    int summary_cost = 0;
 
     void show() {
         for (int i = 0; i < mst->get_size(); i++) {
             cout << mst->get(i).start_vertex << " " << mst->get(i).end_vertex << " $:" << mst->get(i).weight << endl;
         }
+        cout<<"Cost: "<<summary_cost<<endl;
     }
 
 public:
@@ -42,9 +44,10 @@ public:
         }
         for (int i = 0; i < number_of_vertexes - 1; i++) {
             do {
-                edge = queue->front();
+                edge = queue->get_first();
                 queue->pop();
             } while (set.findSet(edge.start_vertex) == set.findSet(edge.end_vertex));
+            summary_cost += edge.weight;
 
             mst->addLast(edge);
             set.unionSets(edge);
@@ -96,9 +99,10 @@ public:
 
         for (int i = 0; i < number_of_vertexes - 1; i++) {
             do {
-                edge = queue->front();
+                edge = queue->get_first();
                 queue->pop();
             } while (set.findSet(edge.start_vertex) == set.findSet(edge.end_vertex));
+            summary_cost += edge.weight;
 
             mst->addLast(edge);
             set.unionSets(edge);
