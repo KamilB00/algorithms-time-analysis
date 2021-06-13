@@ -19,6 +19,7 @@ class Kruskal {
     }
 
 public:
+    // Kruskal's algorithm main function (based on Adjacency List)
     void kruskalAL(bool show_result) {
         ArrayList<List<ArrayList<int>>> adjacency_list = graph->get_adjacency_list();
 
@@ -57,7 +58,7 @@ public:
         }
         delete queue;
     }
-
+    // Kruskal's algorithm main function (based on Incidence Matrix)
     void kruskalIM(bool show_result) {
         Edge_Element edge{};
         UnionFind set(number_of_vertexes);

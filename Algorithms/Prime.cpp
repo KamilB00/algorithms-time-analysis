@@ -22,6 +22,7 @@ public:
 
     }
 
+    // Prim's algorithm main function (based on Adjacency List)
     void primAL(int start_node, bool show_result) {
         mst = new List<Edge_Element>();
         visited = new bool[number_of_vertexes];
@@ -44,6 +45,7 @@ public:
 
     }
 
+    // Prim's algorithm main function (based on Incidence Matrix)
     void primIM(int start_node, bool show_result) {
         mst = new List<Edge_Element>();
         visited = new bool[number_of_vertexes];
@@ -67,6 +69,7 @@ public:
 
     }
 
+    // returns vertex with minimal cost which meets conditions (based on Incidence Matrix)
     int min_vertex_IM(int src_vertex) {
         Edge_Element edge;
 
@@ -100,6 +103,7 @@ public:
         return next_vertex;
     }
 
+    // returns vertex with minimal cost which meets conditions (based on Adjacency List)
     int min_vertex_AL(int src_vertex) {
 
         Edge_Element edge{};

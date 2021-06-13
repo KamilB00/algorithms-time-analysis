@@ -36,6 +36,7 @@ class BellmanFord {
         }
     }
 
+
     void show_arrays() {
         cout << "previous :";
         for (int i = 0; i < number_of_vertexes; i++) {
@@ -56,12 +57,14 @@ class BellmanFord {
 
     }
 
+    //helper function to show_path func.
     int show_previous(int node) {
         cout << node << " ";
         return previous[node];
     }
 
 public:
+    // Bellman Ford algorithm main function (based on Adjacency List)
     void bellmanFordAL(int src_node, int end_node,bool show_result) {
         adjacency_list = graph->get_adjacency_list();
 
@@ -100,6 +103,7 @@ public:
         delete[] previous;
     }
 
+    // Bellman Ford algorithm main function (based on Incidence Matrix)
     void bellmanFordIM(int src_node, int end_node, bool show_result) {
         adjacency_list = graph->get_adjacency_list();
 
