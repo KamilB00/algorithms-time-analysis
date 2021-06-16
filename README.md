@@ -1,4 +1,4 @@
-#Algorithms time analysis
+# Algorithms time analysis
 
 Program analyses performance time of algorithms such as:
 
@@ -7,12 +7,12 @@ Program analyses performance time of algorithms such as:
 * Djikstra algorithm
 * Bellman-Ford algorithm
 
-###Graph representation
+### Graph representation
 Each algorithm was implemented using **adjacency list** and **incidence matrix**.
 The program was created to determine a performance difference between both representations and
 access which representation suits better to particular problem. 
 
-###Data structures 
+### Data structures 
 Problem involved using self implemented data structures such as:
 * Array List (**Generic**)
 * Linked List (**Generic**)
